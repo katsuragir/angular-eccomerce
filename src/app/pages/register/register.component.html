@@ -1,0 +1,201 @@
+<!-- breadcrumb start -->
+<div class="breadcrumb-section" style="padding: 15px 0;">
+    <div class="container-home">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                  <h2 style="text-transform: none;">Create Account</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+              <!--
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="'/home/vapehan'">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">create account</li>
+                    </ol>
+                </nav>
+                -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!-- section start -->
+<section class="register-page section-b-space" style="padding-top: 10px;">
+    <div class="container-home" style="margin-bottom: 15px;">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="theme-card">
+                  <app-auth-notice></app-auth-notice>
+                  <div style="margin-top: 5px;" class="alert alert-primary" role="alert" #alertNotice>
+                    <div class="alert-text" [innerHTML]="pesan"></div>
+                  </div>
+                    <form class="theme-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()" autocomplete="off">
+                        <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="fullname">First Name *</label>
+                                <input type="text" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" (keypress)="name($event)" class="form-control" id="fname" placeholder="First Name" required="" formControlName="firstname">
+                                <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                                    <div *ngIf="f.firstname.errors.required">First Name is required</div>
+                                </div>
+                                <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                                    <div *ngIf="f.firstname.errors.minlength">First Name must be at least 3 characters</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                              <label for="fullname">Last Name</label>
+                              <input type="text" class="form-control" id="lname" placeholder="Last Name" (keypress)="name($event)" formControlName="lastname">
+
+                            </div>
+                            <div class="col-md-6">
+                              <label for="email">email *</label>
+                              <input type="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" class="form-control" id="email" placeholder="Email" required="" formControlName="email">
+                              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                  <div *ngIf="f.email.errors.required">Email is required</div>
+                              </div>
+                              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                  <div *ngIf="f.email.errors.minlength">Email must be at least 10 characters</div>
+                              </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-row">
+                          <div class="col-md-6">
+                              <label for="gender">gender *</label>
+                              <select [ngClass]="{ 'is-invalid': submitted && f.gender.errors }" class="form-control" formControlName="gender" id="gender" required>
+                                <option value="" selected>Select Gender</option>
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                              </select>
+                              <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                                  <div *ngIf="f.gender.errors.required">Gender is required</div>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <label for="phone">Phone *</label>
+                              <input type="text" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" class="form-control" placeholder="example: 082124125488" maxlength="14" (keypress)="phoneNumber($event)" formControlName="phone" required>
+                              <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                                  <div *ngIf="f.phone.errors.required">Phone is required</div>
+                              </div>
+
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-md-6">
+                            <label for="DOB">Date Of Birth *</label>
+                            <div class="input-group">
+                              <input [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" class="form-control" formControlName="dob" type="date" required>
+                            </div>
+                            <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                                <div *ngIf="f.dob.errors.required">Date Of Birth is required</div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="address">Recipient's Name *</label>
+                            <input [ngClass]="{ 'is-invalid': submitted && f.receipient.errors }" class="form-control" (keypress)="name($event)" type="text" id="receipient" formControlName="receipient" required>
+                            <div *ngIf="submitted && f.receipient.errors" class="invalid-feedback">
+                                <div *ngIf="f.receipient.errors.required">Recipient's Name is required</div>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="form-row">
+                          <div class="col-md-6">
+                            <label for="province">Province *</label>
+                            <select [ngClass]="{ 'is-invalid': submitted && f.province.errors }" class="form-control" formControlName="province" #mySelect (change)='onOptionsSelected(mySelect.value)' required>
+                                <option value="" selected>Select Province</option>
+                                <option *ngFor="let prov of province" value="{{prov.province_id}}">{{prov.province}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.province.errors" class="invalid-feedback">
+                                <div *ngIf="f.province.errors.required">Province is required</div>
+                            </div>
+                          </div>
+                          <div class="col-md-6"  *ngIf="selectedValue">
+                            <label for="city">City *</label>
+                            <select [ngClass]="{ 'is-invalid': submitted && f.city.errors }" class="form-control" formControlName="city" #myCity (change)='onOptionDistrict(myCity.value)' required>
+                                <option value="" selected>Select City</option>
+                                <option *ngFor="let city of city" value="{{city.city_id}}">{{city.city_name}} {{city.type}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                                <div *ngIf="f.city.errors.required">City is required</div>
+                            </div>
+                          </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="form-row" *ngIf="selectDistrict">
+                          <div class="col-md-6" *ngIf="selectDistrict">
+                            <label for="subdistrict">sub district *</label>
+                            <select [ngClass]="{ 'is-invalid': submitted && f.district.errors }" class="form-control" formControlName="district" #myPostal (change)="onShowPostal(myPostal.value)" required>
+                                <option value="" selected>Select District</option>
+                                <option *ngFor="let dist of district" value="{{dist.subdistrict_id}}">{{dist.subdistrict_name}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.district.errors" class="invalid-feedback">
+                                <div *ngIf="f.district.errors.required">District is required</div>
+                            </div>
+                          </div>
+                          <div class="col-md-6" *ngIf="showPostal">
+                            <label for="postal" >Postal pos *</label>
+                            <input [ngClass]="{ 'is-invalid': submitted && f.postal.errors }" class="form-control" formControlName="postal" type="number" id="postal" required>
+                          </div>
+                          <div *ngIf="submitted && f.postal.errors" class="invalid-feedback">
+                              <div *ngIf="f.postal.errors.required">Postal is required</div>
+                          </div>
+                        </div>
+
+                        <div class="form-row" style="margin-bottom: 10px;">
+                          <div class="col-md-12">
+                            <label for="address">Address *</label>
+                            <textarea id="form7" class="md-textarea form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" rows="3" formControlName="address" required></textarea>
+
+                            <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                <div *ngIf="f.address.errors.required">Address is required</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-row" style="margin-bottom: 10px;">
+                            <div class="col-md-6">
+                                <label for="review">Password *</label>
+                                <show-hide-password size="sm" btnStyle="primary" [btnOutline]="false">
+                                  <input type="password" style="margin:unset;" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" class="form-control" id="password" placeholder="Enter your password" required="" formControlName="password">
+                                </show-hide-password>
+                                <span style="color: red; font-size: 12px; font-weight: 400;">*Minimum 6 characters, at least one uppercase letter, one lowercase letter and one number</span>
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                </div>
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="review">Confirm Password</label>
+                                <show-hide-password size="sm" btnStyle="primary" [btnOutline]="false">
+                                  <input type="password" style="margin:unset;" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" class="form-control" id="confirmPassword" placeholder="Confirm password" required="" formControlName="confirmPassword">
+                                </show-hide-password>
+                                <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                                    <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                                    <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-row">
+                          <div class="col-md-12" style="margin-top: 10px; margin-bottom: 5px;">
+                            <input type="checkbox" name="agree" formControlName="agree">
+                              I agree the <a [routerLink]="['/pages/terms-and-condition']">terms & conditions </a> and <a [routerLink]="['/pages/privacy-policy']">Privacy Policy</a>
+                          </div>
+                          <button  class="btn btn-solid">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Section ends-->

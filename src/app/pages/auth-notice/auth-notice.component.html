@@ -1,0 +1,7 @@
+
+<div [hidden]="!message || message==='null'" class="alert alert-{{type}}" role="alert" #alertNotice>
+  <div class="alert-text" [innerHTML]="message"></div>
+  <div [hidden]="!resend" style="margin-top: 10px;">
+    <a style="color: #004bff; font-size: 14px; font-weight: 400; cursor: pointer;" (click)="reverification(customer)"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Resend Verification Email</a>
+  </div>
+</div>

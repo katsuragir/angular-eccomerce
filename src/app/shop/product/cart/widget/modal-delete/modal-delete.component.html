@@ -1,0 +1,40 @@
+<!-- Quick-view modal popup start-->
+<div class="modal fade bd-example-modal-lg theme-modal quickviewm" [id]="'deleteCart'+product.id_product" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="product">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" style="position: relative;">
+      <div style="margin: 0 auto;">
+      <div class="modal-content quick-view-modal" style="width: 100%;">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <form>
+            <div class="row">
+              <div class="col-lg-12 col-xs-12">
+                <div class="box-title" style="text-align: center;">
+                  <h3>Delete Product?</h3>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12" style="text-align: center; color: gray;">
+                    <label>Product <span style="font-weight: 300px; color: black;">{{product.prodName}}</span> Will be Drop in Your Cart.</label>
+                  </div>
+                </div>
+
+                <hr />
+
+                  <div style="text-align: center; margin: 10px 0;">
+                     <a [routerLink]="" (click)="submit(product.id)" class="btn btn-solid mobile-cancel" style="width: 150px; ">Delete</a>
+                  </div>
+                  <div style="text-align: center; margin: 10px 0;">
+                    <a [routerLink]="" data-dismiss="modal" aria-label="Close" class="btn btn-outline mobile-cancel" style="width: 150px;">Cancel</a>
+                  </div>
+
+              </div>
+            </div>
+          </form>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <!-- Quick-view modal popup end-->

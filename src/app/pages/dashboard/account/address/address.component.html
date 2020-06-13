@@ -1,0 +1,45 @@
+<div class="dashboard-right">
+  <div class="dashboard" *ngIf="customer">
+      <div class="page-title">
+          <h2>Address Info</h2>
+      </div>
+      <div class="box-account box-info">
+          <div>
+              <div class="box">
+                  <div class="box-title">
+                      <h3>Address Book</h3>
+                     <!-- <a [routerLink]="">New Addresses</a> -->
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-1">
+                        <input type="radio" [checked]="customer.set === 1">
+                      </div>
+                      <div class="col-sm-3">
+                        <h6>Recipient's Name</h6>
+                        <address>
+                          {{customer.nameReceive}}
+                        </address>
+                      </div>
+                      <div class="col-sm-3">
+                          <h6>Address</h6>
+                          <address>
+                            {{customer.address}}
+                          </address>
+                      </div>
+                      <div class="col-sm-3">
+                          <h6>Area address</h6>
+                          <address>
+                              {{customer.province}}, {{customer.city}} {{customer.type}}, {{customer.subdistrict_name}}, {{customer.postal}}
+                          </address>
+                      </div>
+                      <div class="col-sm-3">
+                        <a [routerLink]="" [attr.data-target]="'#editAddress'+customer.id_customer" data-toggle="modal" title="Edit Address"><i class="fa fa-edit"></i> Edit</a><!-- |
+                        <a [routerLink]="" (click)="submit()"><i class="fa fa-trash"></i> Delete</a> -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <app-edit-address [customer]="customer"></app-edit-address>
+  </div>
+</div>

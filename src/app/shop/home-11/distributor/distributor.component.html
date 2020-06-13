@@ -1,0 +1,19 @@
+<!--  logo section -->
+<section class="section-b-space" *ngIf="distributor.length > 0">
+  <div class="container-home" style="padding-top: 27px;">
+    <div class="row">
+      <div class="col-md-12">
+        <ngx-slick-carousel class="no-arrow" #slickModal="slick-carousel" [config]="logoSlideConfig">
+          <div ngxSlickItem *ngFor="let lg of distributor | orderBy:sortByOrder">
+            <div class="logo-block">
+              <a >
+                <img src="{{imgUrl}}/images/distributors/{{lg.image}}" height="125" width="125" alt="">
+             </a>
+            </div>
+          </div>
+        </ngx-slick-carousel>
+      </div>
+    </div>
+  </div>
+</section>
+<!--  logo section end-->

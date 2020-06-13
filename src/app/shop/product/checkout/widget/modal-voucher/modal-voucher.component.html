@@ -1,0 +1,41 @@
+<!-- Quick-view modal popup start-->
+<div class="modal fade bd-example-modal-lg theme-modal quickviewm" [id]="'voucher'+customer.id_customer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="customer">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content quick-view-modal" style="border-radius: 0.7rem;">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div style="width: 100%; height: auto; display: block;">
+            <div style=" width: 100%; padding: 20px 20px; margin-bottom: 10px;">
+              <div style="box-shadow: 1px 3px 8px 1px rgba(0,0,0,.12); border-radius: 7px;">
+                <form [formGroup]="voucherForm">
+                  <div class="row">
+                    <div class="col-lg-12 col-xs-12">
+                      <div class="box-title" style="text-align: center; padding-top: 25px;">
+                        <h3>Voucher Promo Vapehan</h3>
+                      </div>
+                      <div class="row" style="padding: 20px 20px;">
+                        <div class="col-lg-12">
+                          <label>Code Voucher : </label>
+                        </div>
+                          <div class="col-lg-9">
+                            <input matInput class="form-control" type="text" placeholder="Enter Voucher Code" formControlName="voucher" required>
+                          </div>
+                          <div class="col-lg-3 mobile-use">
+                              <button (click)="voucherUse(customer, total)" class="btn btn-solid" style="width: 100%; text-transform: none;">Use</button>
+                          </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Quick-view modal popup end-->

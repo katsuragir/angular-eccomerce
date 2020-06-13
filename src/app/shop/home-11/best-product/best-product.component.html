@@ -1,0 +1,112 @@
+<!-- section start
+<section class="portfolio-section metro-section port-col">
+    <div class="container">
+        <div class="isotopeContainer row">
+            <div class="col-xl-3 col-sm-6 isotopeSelector" *ngFor="let product of products">
+                <div class="product-box">
+                    <app-product-box-metro [product]="product"></app-product-box-metro>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+ Section ends -->
+
+ <!-- Tab product -->
+<div class="title1 section-t-space container-home" style="padding-top: 10px;" *ngIf="productsBest.length > 0" id="best">
+    <!--<h4>exclusive products</h4>-->
+    <h2 class="title-inner1">Best products</h2>
+</div>
+  <section class="section-b-space p-t-0" style="padding-bottom: 35px;" >
+    <div class="container-home">
+      <div class="row">
+        <div class="col">
+          <div class="theme-tab">
+            <!--
+            <ul class="tabs tab-title">
+              <li class="current">
+                <a href="tab-4">New Products</a>
+              </li>
+              <li class="">
+                <a href="tab-5">Best Sellers</a>
+              </li>
+            </ul>
+            -->
+            <!--Display-->
+            <div class="product-wrapper-grid">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="kotak-product" *ngFor="let product of products | orderBy: sortByOrder">
+                    <div class="product-box">
+                      <app-product [product]="product" [setup]="setting"></app-product>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="product-pagination">
+              <div class="theme-paggination-block">
+                <div class="container-fluid p-0">
+                  <div class="row">
+                    <div class="page-number-class">
+                      <nav aria-label="Page navigation">
+                        <ul class="pagination" *ngIf="paginate.pages && paginate.pages.length" style="justify-content: left; border: unset;">
+                          <li *ngIf="paginate.currentPage > 1" class="page-item" [ngClass]="{disabled:paginate.currentPage === 1}">
+                            <a class="page-link" (click)="setPage(1, 'page')" aria-label="Previous">
+                              <span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+                              <span class="sr-only">First</span>
+                            </a>
+                          </li>
+                          <li class="page-item" [ngClass]="{disabled:paginate.currentPage === 1}">
+                            <a class="page-link" (click)="setPage(paginate.currentPage - 1, 'page')" aria-label="Previous">
+                              <span aria-hidden="true"><i class="fa fa-chevron-left" aria-hidden="true"></i></span>
+                              <span class="sr-only">Previous</span>
+                            </a>
+                          </li>
+                          <li class="page-item active" *ngFor="let page of paginate.pages" [ngClass]="{active:paginate.currentPage === page}">
+                            <a class="page-link" (click)="setPage(page, 'page')">{{page}}</a>
+                          </li>
+                          <li class="page-item" *ngIf="paginate.currentPage !== paginate.totalPages" [ngClass]="{disabled:paginate.currentPage === paginate.totalPages}">
+                            <a class="page-link" (click)="setPage(paginate.currentPage + 1, 'page')" aria-label="Next">
+                              <span aria-hidden="true"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+                              <span class="sr-only">Next</span>
+                            </a>
+                          </li>
+                          <li *ngIf="paginate.currentPage !== paginate.totalPages && paginate.endPage !== paginate.totalPages" class="page-item" [ngClass]="{disabled:paginate.currentPage === paginate.totalPages}">
+                            <a class="page-link" (click)="setPage(paginate.totalPages, 'page')" aria-label="Previous">
+                              <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+                              <span class="sr-only">Last</span>
+                            </a>
+                          </li>
+                        </ul>
+                        </nav>
+                      </div>
+                      <div class="page-text-class">
+                        <div class="product-search-count-bottom">
+                          <h5>Showing 1-{{products.length}}</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <!--
+            <div class="tab-content-cls">
+              <div class="tab-content active default">
+                <div class="no-slider row">
+                  <div class="product-box" *ngFor="let product of productsNew | orderBy:desc | slice:0:20">
+                     <app-home-product [product]="product"></app-home-product>
+                  </div>
+                </div>
+              </div>
+            </div>
+            -->
+            <!--end display-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-quick-view [products]="products" [setup]="setting"></app-quick-view>
+  </section>
+  <!-- Tab product end -->

@@ -1,0 +1,73 @@
+<div class="dashboard-right tab-product" style="padding-top: 10px;">
+  <div class="row" style="margin-bottom: 20px;" *ngIf="setting$ | async as setting">
+      <div class="col-sm-12 col-lg-12">
+        <div class="item-menu">
+          <ul class="nav nav-tabs nav-material" style="margin-bottom: 15px;" id="top-tab" role="tablist" >
+            <li class="nav-item">
+              <a style="text-transform: none;" class="nav-link active" id="wait-pay-tab" data-toggle="tab" href="#wait-pay" role="tab" aria-selected="true">
+                <i class="icofont icofont-ui-home"></i>Awaiting Payment</a>
+              <div class="material-border"></div>
+            </li>
+
+            <li class="nav-item">
+              <a style="text-transform: none;" class="nav-link" id="veri-pay-tab" data-toggle="tab" href="#veri-pay" role="tab" aria-selected="false"><i class="icofont icofont-man-in-glasses"></i>Verification Payment</a>
+              <div class="material-border"></div>
+            </li>
+
+            <li class="nav-item">
+              <a style="text-transform: none;" class="nav-link" id="acc-pay-tab" data-toggle="tab" href="#acc-pay" role="tab" aria-selected="false">
+              <i class="icofont icofont-contacts"></i>Accept Payment</a>
+              <div class="material-border"></div>
+            </li>
+            <li class="nav-item">
+              <a style="text-transform: none;" class="nav-link" id="on-process-tab" data-toggle="tab" href="#on-process" role="tab" aria-selected="false">
+                  <i class="icofont icofont-contacts"></i>On Process</a>
+              <div class="material-border"></div>
+            </li>
+            <li class="nav-item">
+              <a style="text-transform: none;" class="nav-link" id="sending-tab" data-toggle="tab" href="#sending" role="tab" aria-selected="false">
+                  <i class="icofont icofont-contacts"></i>Sending</a>
+              <div class="material-border"></div>
+            </li>
+            <li class="nav-item">
+              <a style="text-transform: none;" class="nav-link" id="delivered-tab" data-toggle="tab" href="#delivered" role="tab" aria-selected="false">
+                  <i class="icofont icofont-contacts"></i>Order Received</a>
+              <div class="material-border"></div>
+            </li>
+            <li class="nav-item">
+              <a style="text-transform: none;" class="nav-link" id="cancel-tab" data-toggle="tab" href="#cancel" role="tab" aria-selected="false">
+                  <i class="icofont icofont-contacts"></i>Cancel Order</a>
+              <div class="material-border"></div>
+            </li>
+          </ul>
+        </div>
+        <div class="tab-content nav-material" id="top-tabContent">
+          <div class="tab-pane fade show active" id="wait-pay" role="tabpanel" aria-labelledby="wait-pay-tab">
+            <orders-list [parameter]="0" ></orders-list>
+          </div>
+
+          <div class="tab-pane fade show" id="veri-pay" role="tabpanel" aria-labelledby="veri-pay-tab">
+            <orders-list [parameter]="4" ></orders-list>
+          </div>
+
+          <div class="tab-pane fade show" id="acc-pay" role="tabpanel" aria-labelledby="acc-pay-tab">
+            <orders-list [parameter]="5" ></orders-list>
+          </div>
+          <div class="tab-pane fade show" id="on-process" role="tabpanel" aria-labelledby="on-process-tab">
+            <orders-list [parameter]="1" ></orders-list>
+          </div>
+          <div class="tab-pane fade show" id="sending" role="tabpanel" aria-labelledby="sending-tab">
+            <orders-list [parameter]="2" ></orders-list>
+          </div>
+          <div class="tab-pane fade show" id="delivered" role="tabpanel" aria-labelledby="delivered-tab">
+            <orders-list [parameter]="3" ></orders-list>
+          </div>
+          <div class="tab-pane fade show" id="cancel" role="tabpanel" aria-labelledby="cancel-tab">
+            <orders-list [parameter]="6" ></orders-list>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+</div>

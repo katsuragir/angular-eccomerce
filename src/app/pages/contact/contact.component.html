@@ -1,0 +1,130 @@
+<!-- breadcrumb start -->
+<div class="breadcrumb-section" style="padding: 15px 0;">
+    <div class="container-home">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2 style="text-transform: none;">Contact Us</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+              <!--
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="'/home/one'">Home</a></li>
+                        <li class="breadcrumb-item active">contact</li>
+                    </ol>
+                </nav>
+                -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!--section start-->
+<section class=" contact-page section-b-space">
+    <div class="container">
+        <div class="row section-b-space">
+            <div class="col-lg-7 map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.277268759595!2d106.93347815057446!3d-6.227127662697786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698cbc889cfc89%3A0x195c85a3c3b60618!2sHelihantoys+%26+Vapehan!5e0!3m2!1sen!2sid!4v1565008116937!5m2!1sen!2sid"  allowfullscreen></iframe>
+            </div>
+            <div class="col-lg-5">
+                <div class="contact-right">
+                    <ul>
+                        <li>
+                            <div class="contact-icon">
+                                <img  src="assets/images/icon/phone.png" alt="Generic placeholder image">
+                                <h6>Contact Us</h6>
+                            </div>
+                            <div class="media-body">
+                                <p>+62 822 - 3796 - 3993</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="contact-icon">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <h6>Address</h6>
+                            </div>
+                            <div class="media-body">
+                                <p>Jl. Jend RS. Soekanto No 1, Jakarta Timur, DKI Jakarta, </p>
+                                <p>Indonesian 13460</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="contact-icon">
+                                <img  src="assets/images/icon/email.png" alt="Generic placeholder image">
+                                <h6>Email</h6>
+                            </div>
+                            <div class="media-body">
+                                <p>shop@vapehan.com</p>
+                                <p>vapehan@gmail.com</p>
+                            </div>
+                        </li>
+                        <!--
+                        <li>
+                            <div class="contact-icon">
+                                <i class="fa fa-fax" aria-hidden="true"></i>
+                                <h6>Fax</h6>
+                            </div>
+                            <div class="media-body">
+                                <p>Support@Shopcart.com</p>
+                                <p>info@shopcart.com</p>
+                            </div>
+                        </li>
+                        -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <form class="theme-form" [formGroup]="contactForm" (ngSubmit)="onSubmit()" autocomplete="off">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="name">Fullname</label>
+                            <input type="text" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" formControlName="firstname" class="form-control" id="name" placeholder="Enter Your name" required="">
+                            <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                                <div *ngIf="f.firstname.errors.required">Fullname is required</div>
+                            </div>
+                            <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                                <div *ngIf="f.firstname.errors.minlength">Fullname must be at least 3 characters</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="review">Phone number</label>
+                            <input type="text" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" formControlName="phone" class="form-control" id="review" placeholder="Enter your number" required="">
+                            <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                                <div *ngIf="f.phone.errors.required">Phone number is required</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email">Email</label>
+                            <input type="text" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" formControlName="email" class="form-control" id="email" placeholder="Email" required="">
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                            </div>
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.minlength">Email must be at least 10 characters</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email">Subject</label>
+                            <input type="text" class="form-control" id="subject" [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" formControlName="subject" placeholder="subject" required>
+                            <div *ngIf="submitted && f.subject.errors" class="invalid-feedback">
+                                <div *ngIf="f.subject.errors.required">Subject is required</div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="review">Write Your Message</label>
+                            <textarea class="form-control" formControlName="massage" placeholder="Write Your Message" id="exampleFormControlTextarea1" rows="6"></textarea>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-solid">Send Your Message</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Section ends-->

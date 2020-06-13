@@ -1,0 +1,221 @@
+<!-- breadcrumb start -->
+<div class="breadcrumb-section" style="padding: 15px 0;">
+  <div class="container-home">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="page-title" *ngIf="product">
+          <h2 style="text-transform: none; font-weight: 500;" *ngIf="ctname">
+            <span class="breadcrumb-item"><a [routerLink]="'/'" style="color: inherit;">Home</a></span>
+            <span class="breadcrumb-item active" style="color: inherit;"><a [routerLink]="['/home/product/collection/', product.id_category]" style="color: inherit;">{{product.catName}}</a></span>
+            <span class="breadcrumb-item active">{{product.name}}</span>
+          </h2>
+          <h2 style="text-transform: none; font-weight: 500;" *ngIf="!ctname">
+            <span class="breadcrumb-item"><a [routerLink]="'/'" style="color: inherit;">Home</a></span><span class="breadcrumb-item active">Product</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- breadcrumb End -->
+<!-- section start -->
+<section class="section-b-space" style="padding-top: 10px;" *ngIf="product">
+  <div class="collection-wrapper">
+    <div class="container-home">
+      <div class="row">
+        <table>
+          <th class="col-md-7">
+            <tr style="display: block;">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm-5">
+                    <div class="row">
+                    <ngx-slick-carousel style="width: 100%;" class="product-slick" id="p-zoom" #slickModal="slick-carousel" [config]="slideConfig">
+                      <div ngxSlickItem>
+                          <div>
+                              <img src="{{imagePreview}}" style=" object-fit: scale-down;border-radius: 7px; box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); width: 100%;" alt="" class="img-flud"><span><img src="{{imgUrl}}/images/soldout.png" class="dtl-item" alt="Sold Out" *ngIf="product.stock === 0"></span><span><img src="{{imgUrl}}/images/discount.png" class="dtl-item" alt="Sold Out" *ngIf="product.discount"></span>
+                          </div>
+                      </div>
+                    </ngx-slick-carousel>
+                    </div>
+                    <div class="row" style="margin-right: -10px;">
+                        <div class="col-sm-12 p-0">
+                          <div class="demo-border" style="border-color: white;">
+                              <drag-scroll class="demo-one"
+                                drag-scroll-y-disabled="true"
+                                scrollbar-hidden="true"
+                                (dsInitialized)="onDragScrollInitialized()"
+                                (indexChanged)="onIndexChanged($event)"
+                                (reachesLeftBound)="leftBoundStat($event)"
+                                (reachesRightBound)="rightBoundStat($event)"
+                                (snapAnimationFinished)="onSnapAnimationFinished()"
+                                (dragStart)="onDragStart()"
+                                (dragEnd)="onDragEnd()"
+                                #nav
+                                >
+                                <img drag-scroll-item *ngFor="let image of images" src="{{imgUrl}}/images/product/{{image.image}}" style="border-radius: 7px; width: 20%; object-fit: scale-down;" (click)="clickItem(image.image)"/>
+                              </drag-scroll>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-7 rtl-text note-display">
+                    <div class="product-right" style="margin-left: 5px;">
+                      <h2 style="color: #1b1b1b">{{product.name}} <br /><span *ngIf="product.color" style="font-size: 13px; font-weight: 500; color: #424242;"> ( {{product.color}} )</span><span *ngIf="product.nic" style="font-size: 13px; font-weight: 500;color: #424242;"> ( {{product.nic}} )</span></h2>
+                      <h4 *ngIf="product.discounttab === 'Percent'">
+                        <span>{{product.discountvalue}}% off </span>
+                        <del>Rp. {{product.harga}} </del>
+                      </h4>
+                      <h4 *ngIf="product.discounttab === 'Amount'">
+                        <span>{{product.discountvalue | currency:' ':'symbol':'1.0-3'}} off </span>
+                        <del>Rp. {{product.harga}} </del>
+                      </h4>
+                      <h3 >Rp. <span *ngIf="!product.discount">{{product.harga}}</span><span *ngIf="product.discount">{{product.discount}}</span></h3>
+
+                      <div class="product-description border-product" *ngIf="!productsService?.catalogMode">
+
+                        <h5 class="avalibility" style="margin-bottom: unset;" *ngIf="counter <= product.stock"><span>In Stock</span></h5>
+                        <p class="stock-para" *ngIf="counter <= product.stock && product.stock >= 20">Stock Left : {{product.stock}}</p>
+                        <!--<p class="stock-para" *ngIf="counter <= product.stock && product.stock >= 30 && product.stock < 50">Stock over > {{product.stock}}</p>-->
+                        <p class="stock-para" *ngIf="counter <= product.stock && product.stock < 20">Hurry up! Stock Left : {{product.stock}}</p>
+                        <h5 class="avalibility" *ngIf="counter > product.stock"><span>Out of Stock</span></h5>
+                        <div class="col-12" style="margin: 10px 0;" *ngIf="vouchers">
+                          <div class="row">
+                            <div class="col-12">
+                              <div class="row" style="flex-wrap: unset;">
+                                <div *ngIf="ongkir" class="col-6 box-voucher" (click)="type = 'ongkir'" [attr.data-target]="'#ModalVoucher'" data-toggle="modal" title="Modal Voucher" style="padding: unset; cursor: pointer;">
+                                  <div class="awal-voucher"></div>
+                                  <div class="tengah-voucher">
+                                    <p class="name-voucher">Voucher Ongkir</p>
+                                    <br />
+                                    <p class="limit-voucher">click to view</p>
+                                  </div>
+                                  <div class="gambar-voucher-ongkir"></div>
+                                </div>
+                                <div *ngIf="payment" class="col-6 box-voucher" (click)="type = 'pembayaran'" [attr.data-target]="'#ModalVoucher'" data-toggle="modal" title="Modal Voucher" style="padding-left: unset; cursor: pointer;">
+                                  <div class="awal-voucher"></div>
+                                  <div class="tengah-voucher">
+                                    <p class="name-voucher">Voucher Pembelian</p>
+                                    <br />
+                                    <p class="limit-voucher">click to view</p>
+                                  </div>
+                                  <div class="gambar-voucher-pay"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <h6 class="product-title">quantity</h6>
+                        <div class="qty-box">
+                          <div class="input-group">
+                            <span class="input-group-prepend">
+                                    <button type="button" (click)="decrement()" class="btn quantity-left-minus" data-type="minus" data-field="">
+                                      <i class="ti-angle-left"></i>
+                                  </button>
+                              </span>
+                            <input type="text"  name="quantity" disabled class="form-control input-number" value="{{counter}}">
+                            <span class="input-group-prepend">
+                                <button type="button" (click)="increment(product)" class="btn quantity-right-plus" data-type="plus" data-field="" [class.disabled]="counter >= product.stock">
+                                    <i class="ti-angle-right"></i>
+                                </button>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="product-buttons" *ngIf="!productsService?.catalogMode && setting$ | async as setting">
+
+
+                              <a *ngIf="setting.cart === 1" [routerLink]="" (click)="addToCart(product, counter)" class="btn btn-solid btnaddtocart" [class.disabled]="counter > product.stock || setting.cart === 0">Add To Cart</a>
+                              <!--
+                              <a *ngIf="product.setup === 1" [routerLink]="" (click)="buyNow(product, counter)" class="btn btn-solid btnbuynow" [class.disabled]="counter > product.stock || product.setup === 0">Buy Now</a>
+                              -->
+
+                      </div>
+                      <div class="border-product" style="display: none;">
+                        <h6 class="product-title">product details</h6>
+                        <div [innerHTML]="detailProd"></div>
+                      </div>
+                      <div class="border-product">
+                        <h6 class="product-title">share it</h6>
+                        <div class="product-icon">
+                          <ul class="product-social">
+                            <li><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                            <li><a target="_blank" href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+                            <li><a target="_blank" href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a></li>
+                          </ul>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <section class="tab-product m-0">
+                <div class="row">
+                  <div class="col-sm-12 col-lg-12">
+                    <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                      <li class="nav-item">
+                        <a class="nav-link active" id="top-home-tab" data-toggle="tab" href="#top-home" role="tab" aria-selected="true">
+                          <i class="icofont icofont-ui-home"></i>Description</a>
+                        <div class="material-border"></div>
+                      </li>
+
+                    </ul>
+                    <div class="tab-content nav-material" id="top-tabContent">
+                      <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
+                        <div style="margin-top: 15px;">
+                          <pre style="font-family: arial;" [innerHTML]="descProd"></pre>
+                        </div>
+                        <p *ngIf="show"><iframe width="560" height="315" [src]="youtubeUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+                      </div>
+                      <div class="tab-pane fade" id="top-profile" role="tabpanel" aria-labelledby="profile-top-tab">
+
+                        <div class="single-product-tables">
+                          <table>
+                            <tbody>
+                              <tr>
+                                <td>Color</td>
+                                <td>Red</td>
+                              </tr>
+                              <tr>
+                                <td>Width</td>
+                                <td>{{product.width}}</td>
+                              </tr>
+                              <tr>
+                                <td>Height</td>
+                                <td>{{product.height}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <table>
+                            <tbody>
+                              <tr>
+                                <td>Depth</td>
+                                <td>{{product.depth}}</td>
+                              </tr>
+                              <tr>
+                                <td>Weight</td>
+                                <td>{{product.weight}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </tr>
+          </th>
+          <th class="col-md-5 mobile-best" style="vertical-align: top;">
+            <tr>
+              <product-details-sidebar></product-details-sidebar>
+            </tr>
+          </th>
+        </table>
+      </div>
+    </div>
+  </div>
+  <app-view-voucher [vouchers]="vouchers" [type]="type"></app-view-voucher>
+</section>
+<!-- Section ends -->

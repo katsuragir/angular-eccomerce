@@ -1,0 +1,95 @@
+<div class="dashboard-right">
+  <div class="dashboard" *ngIf="customer$ | async as _customer">
+      <div class="page-title">
+          <h2>My Account</h2>
+      </div>
+      <div class="box-account box-info">
+
+        <div>
+          <div class="box">
+              <div class="box-title">
+                  <h3>Information Account</h3>
+                  <!--<a [routerLink]="" [attr.data-target]="'#editInfo'+_customer.id" data-toggle="modal" title="Edit Info">Manage Info</a>-->
+              </div>
+              <div class="row">
+                  <div class="col-sm-2">
+
+                      <address>
+                          Name
+                      </address>
+                  </div>
+                  <div class="col-sm-10">
+
+                      <address>
+                          {{_customer.firstname}} {{_customer.lastname}}
+                      </address>
+                  </div>
+                  <div class="col-sm-2">
+
+                    <address>
+                        Date of Birth
+                    </address>
+                </div>
+                <div class="col-sm-10">
+
+                    <address>
+                        {{_customer.dob | date: 'dd MMMM yyyy'}}
+                    </address>
+                </div>
+                <div class="col-sm-2">
+
+                  <address>
+                      Gender
+                  </address>
+              </div>
+              <div class="col-sm-10">
+
+                  <address *ngIf="customer.gender==='1'; else two">
+                      Male
+                  </address>
+                  <ng-template #two>
+                    Female
+                  </ng-template>
+              </div>
+              </div>
+          </div>
+      </div>
+          <div>
+              <div class="box">
+                  <div class="box-title">
+                      <h3>Contact Account</h3>
+                      <a [routerLink]="" [attr.data-target]="'#editContact'+_customer.id" data-toggle="modal" title="Edit Contact">Manage Contact</a>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-2">
+
+                          <address>
+                              Email
+                          </address>
+                      </div>
+                      <div class="col-sm-10">
+
+                          <address>
+                             {{_customer.email}}
+                          </address>
+                      </div>
+                      <div class="col-sm-2">
+
+                        <address>
+                            Phone
+                        </address>
+                    </div>
+                    <div class="col-sm-10">
+
+                        <address>
+                           {{_customer.phone}}
+                        </address>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    <app-edit-info></app-edit-info>
+    <app-edit-contact></app-edit-contact>
+  </div>
+</div>

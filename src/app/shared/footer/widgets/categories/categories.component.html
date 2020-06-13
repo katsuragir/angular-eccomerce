@@ -1,0 +1,8 @@
+<div class="footer-title">
+    <h4 style="text-transform: none;">Categories</h4>
+</div>
+<div class="footer-contant">
+    <ul *ngFor="let category of categories">
+        <li style="padding-top: 10px;"><a [routerLink]="['/home/product/collection', category.slug_url]">{{category.name | lowercase }}</a></li>
+    </ul>
+</div>

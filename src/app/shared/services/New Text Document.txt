@@ -1,0 +1,32 @@
+// Add to cart
+  public addToCart(data) {
+    // console.log(data.id_customer);
+    return this.getItems(data.id_customer).pipe(
+      map((result: CartModel[]) => {
+        // console.log(result);
+        if (result.length <= 0) {
+          return this.saveCart(data).subscribe();
+        }
+        const cart = find(result, function(item: CartModel) {
+          // console.log(item);
+          return (item.id_product === data.id_product);
+        });
+        // console.log(cart);
+        if (cart) {
+          // console.log(cart);
+          return this.updateCartQuantityInc(cart.id).subscribe();
+        } else {
+          return this.saveCart(data).subscribe();
+        }
+        /*
+        // console.log(cart);
+        if (cart) {
+          // console.log(cart);
+          return this.updateCartQuantityInc(cart.id).subscribe();
+        }
+        */
+
+        return cart;
+      })
+    );
+  }

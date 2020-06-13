@@ -1,0 +1,68 @@
+<!-- breadcrumb start -->
+<div class="breadcrumb-section" style="padding: 15px 0;">
+    <div class="container-home">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                   <h2 style="text-transform: none;">Dashboard</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+              <!--
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="'/home/one'">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                    </ol>
+                </nav>
+                -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!-- section start -->
+<section class="section-b-space" style="padding-top: 10px;">
+    <div class="container-home">
+        <div class="row">
+            <div class="dash-menu">
+                <div class="account-sidebar" (click)="gotoDashboard()">
+                    <a class="popup-btn" style="color: white; cursor: pointer;">
+                        my account
+                    </a>
+                </div>
+                <div class="dashboard-left">
+                    <div class="collection-mobile-back">
+                        <span class="filter-back">
+                            <i class="fa fa-angle-left" aria-hidden="true"></i> back
+                        </span>
+                    </div>
+                    <div class="block-content">
+                        <ul>
+                            <li ><a style="cursor:pointer;" (click)="All()">Overall</a></li>
+                            <li><a style="cursor:pointer;" (click)="Address()">Address</a></li>
+                            <li><a style="cursor:pointer;" (click)="Orders()">Orders List</a></li>
+                           <!-- <li><a style="cursor:pointer;" (click)="Invoice()">My Invoice</a></li>
+                            <li><a style="cursor:pointer;" (click)="Shipping()">My Shipping</a></li>
+                            <li><a [routerLink]="">My Wishlist</a></li>-->
+                           <!-- <li><a [routerLink]="">Newsletter</a></li>-->
+                            <li><a style="cursor:pointer;" (click)="Account()">My Account</a></li>
+                            <li><a style="cursor:pointer;" (click)="Password()">Change Password</a></li>
+                            <!--<li class="last"><a style="cursor:pointer;" (click)="logout()">Log Out</a></li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+          <div class="dash-item">
+            <account-overall *ngIf="overall"></account-overall>
+            <account-address *ngIf="address"></account-address>
+            <account-orders *ngIf="order"></account-orders>
+            <account-invoices *ngIf="invoice"></account-invoices>
+            <account-shippings *ngIf="shipping"></account-shippings>
+            <account-account *ngIf="account"></account-account>
+            <account-password *ngIf="password"></account-password>
+          </div>
+        </div>
+    </div>
+</section>
+<!-- section end -->

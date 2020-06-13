@@ -1,0 +1,28 @@
+.link-info {
+  display: none;
+}
+
+.order-list {
+  display: none;
+}
+
+@media (max-width: 780px) {
+  .box-title {
+    h3 {
+      font-size: 17px;
+    }
+  }
+  .link-info {
+    display: block;
+    top: 23px !important;
+    color: red !important;
+    font-size: 12px;
+  }
+  &:hover {
+    color: rgb(153, 54, 54);
+  }
+
+  .order-list {
+    display: block;
+  }
+}

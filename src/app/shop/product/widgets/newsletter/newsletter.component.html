@@ -1,0 +1,37 @@
+<!--modal popup start-->
+<div class="modal fade bd-example-modal-lg theme-modal newsletterm" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body news modal7">
+                <div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="modal-bg news">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()"><span aria-hidden="true" class="news-close">&times;</span></button>
+                                <div class="offer-content">
+                                    <div class="row center">
+                                        <img src="https://api.vapehan.com/api/images/news/covid-5000-02.png" class="img-fluid news" alt="">
+                                    </div>
+                                    <h2 class="news">Donasi yang sudah terkumpul sampai saat ini:</h2>
+                                    <form action="" class="auth-form needs-validation" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+                                        <div class="form-group mx-sm-3">
+                                            <div class="row news-box" >
+                                                <h2 class="news-donasi" *ngIf="totaldonasi">Rp {{totaldonasi.donasi | number:'1.0-0'}}</h2>
+                                            </div>
+                                            <h2 class="news-hours">{{date | date: 'dd MMMM yyyy'}}</h2>
+                                            <h2 class="news-hours">Pengumpulan donasi berakhir pada 16 May 2020</h2>
+                                            <img src="https://api.vapehan.com/api/images/news/covid-5000-03.png" class="img-fluid news" alt="">
+                                            <br />
+                                            <span style="color: white;">www.vapehan.com</span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--modal popup end-->

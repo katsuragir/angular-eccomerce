@@ -1,0 +1,105 @@
+<div class="row main-menu">
+
+    <div class="col-sm-4 col-12">
+        <!--
+        <div class="header-contact" style="transform: translate(5px, 0);">
+            <ul>
+                <li>
+                  <form [formGroup]="searchForm">
+                    <input type="text" class="textbox" formControlName="search" placeholder="Search a Product">
+                    <input title="Search" (click)="submit()" value="" type="submit" class="button">
+                  </form>
+                </li>
+                -<li><i class="fa fa-phone" aria-hidden="true"></i>Call Us:  +62 822 - 3796 - 3993</li>-
+            </ul>
+        </div>
+      -->
+        <div class="menu-left">
+            <div class="navbar">
+                <a href="javascript:void(0)" (click)="openNav()">
+                    <div class="bar-style"> <i class="fa fa-bars sidebar-bar" aria-hidden="true"></i></div>
+                </a>
+            </div>
+            <div class="brand-logo note-logo">
+                <a [routerLink]="'/'"> <img src="assets/images/icon/logo.png" class="img-flud" alt=""></a>
+            </div>
+            <!--
+            <div class="brand-logo mobile-logo">
+                <a [routerLink]="'/'"> <img src="assets/images/icon/logo.png" class="img-fluid" alt=""></a>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <div class="col-sm-8 col-12" *ngIf="setting$ | async as setting">
+        <div class="menu-right pull-right sparator-header">
+            <ul class="header-dropdown">
+              <!--
+                <li class="mobile-wishlist">
+                	<a [routerLink]="'/home/wishlist'">
+                		<i class="fa fa-heart" aria-hidden="true"></i>
+                		<img src="assets/images/icon/like.png" alt="">
+                	</a>
+                </li>
+                -->
+                <li class="onhover-dropdown mobile-account">
+                    <img src="assets/images/icon/users.png" alt="">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <ul class="onhover-show-div">
+                        <li *ngIf="login" style="border-bottom: thin solid darkgray;">
+                            <a [routerLink]="'/pages/dashboard'" data-lng="en">
+                                Account
+                            </a>
+                        </li>
+                        <li *ngIf="!login" style="border-bottom: thin solid darkgray;">
+                            <a [routerLink]="'/pages/login'" (click)="toTop()" data-lng="en">
+                                Login / Register
+                            </a>
+                        </li>
+                        <!--
+                        <li *ngIf="!login">
+                          <a [routerLink]="'/pages/register'" data-lng="en">
+                              Register
+                          </a>
+                        </li>
+                        -->
+                        <li *ngIf="login" style="padding-top: 5px;">
+                            <a (click)="logout()" data-lng="es">
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+            <div>
+                <app-header-widgets [shoppingCartItems]="shoppingCartItems"></app-header-widgets>
+            </div>
+        </div>
+
+        <div class="menu-right pull-right confirm-payment" style="margin-right: 25px; padding-top: 15px;">
+            <ul >
+                <li>
+                	<a [routerLink]="" (click)="gotoDashboard()" class="confirm">
+                    <span>Order List</span>
+                  </a>
+
+                  <a [routerLink]="" (click)="gotoDashboard()" class="confirm-logo">
+                      <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                  </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="menu-right pull-right search-product" style="margin-right: 25px; padding-top: 10px;">
+          <ul >
+            <li>
+              <form [formGroup]="searchForm">
+                <input type="text" class="textbox" formControlName="search" placeholder="Search a Product">
+                <input title="Search" (click)="submit()" value="" type="submit" class="button">
+              </form>
+            </li>
+          </ul>
+        </div>
+    </div>
+</div>

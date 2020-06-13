@@ -1,0 +1,67 @@
+<!-- 1st Level Menu -->
+<!-- Sample menu definition -->
+<ul id="sub-menu" class="sm pixelstrap sm-vertical" style="background-color: #424242;">
+  <li *ngFor="let menuItem of categories$ | async">
+      <!-- Link -->
+      <a [routerLink]="['/home/product/collection', menuItem.slug_url]">
+        {{menuItem.name}}
+      </a>
+      <!-- 2nd Level Menu -->
+      <ul [class]="menuItem.megaMenu ? 'mega-menu clothing-menu' : ''" *ngIf="menuItem.children.length > 0">
+
+        <!-- Simple Menu Start-->
+        <ng-container *ngIf="menuItem.megaMenu === 0">
+          <li *ngFor="let childrenItem of menuItem.children">
+            <!-- Link -->
+            <a [routerLink]="['/home/product/collection', childrenItem.slug_url]" (click)="closeNav()" *ngIf="childrenItem.type === 'link'">
+               {{childrenItem.name}}
+            </a>
+            <!-- 3rd Level Menu-->
+            <ul *ngIf="childrenItem.children">
+              <li *ngFor="let childrenSubItem of childrenItem.children">
+
+                  <!-- Link -->
+                  <a (click)="closeNav()" [routerLink]="!childrenSubItem.type ? null : [childrenSubItem.path]" *ngIf="childrenSubItem.type === 'link'">
+                     {{childrenSubItem.name}}
+                  </a>
+
+                  <!-- 4th Level Menu-->
+                  <ul *ngIf="childrenSubItem.children">
+                    <li *ngFor="let childrenSubSubItem of childrenSubItem.children">
+
+                        <!-- Link-->
+                        <a [routerLink]="!childrenSubSubItem.type ? null : [childrenSubSubItem.path]" *ngIf="childrenSubSubItem.type === 'link'">
+                           {{childrenSubSubItem.name}}
+                        </a>
+                        <!-- 5th Level Menu-->
+                        <ul *ngIf="childrenSubSubItem.children">
+                          <li *ngFor="let childrenSubSubSubItem of childrenSubSubItem.children">
+
+                              <!-- Link-->
+                              <a [routerLink]="!childrenSubSubSubItem.type ? null : [childrenSubSubSubItem.path]" *ngIf="childrenSubSubSubItem.type === 'link'">
+                                 {{childrenSubSubSubItem.name}}
+                              </a>
+
+                              <!-- External Tab Link-->
+                              <a href="{{ !childrenSubSubSubItem.type ? null : childrenSubSubSubItem.path }}" target="_blank" *ngIf="childrenSubSubSubItem.type === 'extTabLink'">
+                                 {{childrenSubSubSubItem.title}}
+                              </a>
+                          </li>
+                        </ul>
+                    </li>
+                </ul>
+
+              </li>
+            </ul>
+
+          </li>
+        </ng-container>
+      </ul>
+    </li>
+    <li *ngIf="discount">
+      <!-- Link -->
+      <a [routerLink]="['/home/product/collection/promoitem']">
+        Promo Items
+      </a>
+    </li>
+</ul>

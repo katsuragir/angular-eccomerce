@@ -1,0 +1,212 @@
+<!-- breadcrumb start -->
+<div class="breadcrumb-section" style="padding: 15px 0;">
+    <div class="container-home">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2 style="text-transform: none;">Invoice</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!-- section start -->
+<section class="section-b-space" style="padding-top: 10px; overflow-x: auto;">
+    <div class="container-home" style="padding-bottom: 20px;">
+
+      <div style="text-align: right; margin-top: 0;">
+
+        <button style="cursor: pointer; color: rgb(66, 66, 66); font-size: 14px; text-decoration: none;" (click)="print()">
+          <i class="fa fa-print" aria-hidden="true"></i> Cetak
+        </button>
+
+      </div>
+
+      <div id="print-invoice">
+
+      <table width="100%" cellspacing="0" cellpadding="0" style="width: 100%; padding: 25px, 32px;">
+        <tbody>
+          <tr>
+            <td>
+              <table width="100%">
+                <tbody>
+                  <tr>
+                    <td style="text-align: left;">
+                      <table width="100%">
+                        <tbody>
+                          <tr style="margin-bottom: 10px;">
+                            <td style="display: flex;">
+                              <img class="img-fluid" src="./assets/images/VAPEHAN-VAPESTORE.png" style="object-fit: scale-down; width: 15%; height: auto;" alt="Vapehan">
+                              <div style="padding: 15px 0 0 30px" *ngIf="company">
+                                <h4 style="margin-bottom: 3px; display: block; text-transform: uppercase;"><span style="border-bottom: thin solid black;">{{company.compname}}</span></h4>
+                                <span style="margin-bottom: 3px; font-size: 12px; font-weight: 600; display: block;">Phone : {{company.compphone}} / {{company.comphp}}</span>
+                                <span style="margin-bottom: 3px; font-size: 12px; font-weight: 600; display: block;">Email : {{company.compemail}}</span>
+                                <div style="font-size: 12px;">
+                                    {{company.compaddress}}, {{company.compcity}}, {{company.compprov}}, {{company.comppost}}
+                                </div>
+                              </div>
+                            </td>                            
+                          </tr>
+                          <tr>
+                            <table width="100%" cellspacing="0" cellpadding="0">
+                              <tbody>
+                                <tr>
+                                    <td style="vertical-align: initial;">
+                                      <table width="100%" style="color: #343030; font-size: 14px;">
+                                        <tbody>
+                                          <tr>
+                                            <td width="100">INVOICE</td>
+                                            <td *ngIf="dateorder">: <strong>{{invoiceid}}</strong></td>
+                                          </tr>
+                                          <tr>
+                                            <td width="100">Date</td>
+                                            <td *ngIf="dateorder">: {{dateorder | date: 'dd MMMM yyyy'}}</td>
+                                          </tr>
+                                          <tr>
+                                            <td width="100">Payment</td>
+                                            <td>
+                                              <table width="100%" style="border-collapse: collapse;">
+                                                <tbody>
+                                                  <tr>
+                                                    <td *ngIf="payment">
+                                                      : {{ getItemStatusString(payment) }}
+      
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </td>
+                                    
+                                  </tr>
+                              </tbody>
+                            </table>
+                          </tr>
+                        </tbody>
+                      </table>                      
+                    </td>
+                    <td style="width: 43%;">
+                      <table width="100%" style="margin-top: 25px; font-size: 14px;" *ngIf="customer">
+                        <tbody>
+                          <tr>
+                            <td style="font-weight: 600;padding-bottom: 8px;"><span style="border-bottom: thin solid black;">Shipping Destination :</span></td>
+                          </tr>
+                          <tr>
+                            <td style="padding-bottom: 20px;">
+                              <span style="margin-bottom: 3px; font-weight: 600; display: block;">{{customer.nameReceive}}</span>
+                              <div>
+                                  <span style="margin-bottom: 3px; font-weight: 600; display: block;">{{customer.phone}}</span>
+                                  <span style="margin-bottom: 3px; font-weight: 600; display: block;">{{customer.email}}</span>
+                                  {{customer.address}}, {{customer.province}}, {{customer.city}} {{customer.type}}, {{customer.subdistrict_name}}, {{customer.postal}}
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="width: 100%;">
+        <table width="100%" cellspacing="0" cellpadding="0" style="width: 100%; color: #343030;">
+          <tbody>
+            <tr>
+              <td>
+                <table width="100%" cellspacing="0" cellpadding="0" style=" border-radius: 4px; color: #343030; margin-top: 20px;">
+                  <tbody>
+                    <tr style="background-color: rgb(58, 58, 60); font-size: 14px; font-weight: 600; border-top: thin solid #3a3a3c; border-bottom: thin solid #3a3a3c;">
+                      <td style="padding: 10px 15px; color: white;">Product Name</td>
+                      <td style="padding: 10px 15px; text-align: center; color: white;">Quantity</td>
+
+                      <td style="padding: 10px 15px; text-align: center; white-space: nowrap; color: white;">Price</td>
+                      <td style="padding: 10px 15px; text-align: right; color: white;">Sub Total</td>
+                    </tr>
+                    <tr style="font-size: 14px;" *ngFor="let item of invoice">
+                      <td width="330px" style="padding: 15px; font-weight: 600; word-break: break-word;">
+                        <a style="color: #1b1b1b; text-decoration: underline;">{{item.name}} <br> <span *ngIf="item.color" style="font-size: 11px; font-weight: 500; color: #424242;"> ( {{item.color}} )</span><span *ngIf="item.nic" style="font-size: 11px; font-weight: 500;color: #424242;"> ( {{item.nic}} )</span></a>
+                      </td>
+                      <td valign="top" style="padding: 15px; text-align: center;">{{item.quantity}}</td>
+
+                      <td valign="top" style="padding: 15px; white-space: nowrap; text-align: center;">Rp. {{item.price}}</td>
+                      <td valign="top" style="padding: 15px; white-space: nowrap; text-align: right;">Rp. {{item.subtotal}}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="5" style="padding: 0 15px;">
+                        <div ></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td colspan="4">
+                        <table width="100%" cellspacing="0" cellpadding="0" style="padding-right: 15px; font-size: 14px; font-weight: 600; float: right;">
+                          <tbody>
+                            <tr>
+                              <td colspan="2">
+                                <div ></div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding: 15px 15px 0 15px;font-weight: 400;">Weight</td>
+                              <td style="padding: 15px 0 0 15px; text-align: right;" *ngIf="weight">
+                                <span *ngIf="weight < 1000">{{weight}} G</span>
+                                <span *ngIf="weight >= 1000">{{weight / 1000}} Kg</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding: 5px 15px 5px 15px; font-weight: 400;">Total Product Price</td>
+                              <td style="padding: 5px 0 5px 15px; text-align: right; font-weight: 550;" *ngIf="total">Rp. {{total}}</td>
+                            </tr>
+                            <tr>
+                              <td style="font-weight: 400;padding: 0 15px;">Shipping ({{courier}} "{{service}}")</td>
+                              <td style="padding: 0 0 0 15px; text-align: right;" *ngIf="ongkir">Rp. {{ongkir}}</td>
+                            </tr>
+                            
+                            <tr *ngIf="amountv">
+                              <td style="padding: 15px 15px 15px 15px;font-weight: 400;">
+                                <div>Voucher <span *ngIf="vname">{{vname}}</span></div>
+                                <div>Kode Promo: <strong *ngIf="vid">{{vid}}</strong></div>
+                              </td>
+                              <td style="padding: 15px 0 15px 15px; text-align: right;" *ngIf="potongan">
+                                Rp. {{potongan}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding: 15px;">Total Payment</td>
+                              <td style="padding: 15px 0 15px 15px; text-align: right; font-weight: 700;" *ngIf="totalall && !amountv">Rp. {{totalall}}</td>
+                              <td style="padding: 15px 0 15px 15px; text-align: right; font-weight: 700;" *ngIf="totalall && amountv"><del style="font-size: 12px; font-weight: 300; color:rgba(87, 87, 86, 0.911); padding-right: 5px;">Rp. {{totalall}}</del> Rp. {{amountv}}</td>
+                            </tr>
+                            <!--
+                            <tr>
+                              <td style="padding: 15px;">Unique Code</td>
+                              <td style="padding: 15px 0 15px 15px; text-align: right;" *ngIf="weight">{{payid}}</td>
+                            </tr>
+                            -->
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      </div>
+
+    </div>
+</section>
+<!-- section end -->

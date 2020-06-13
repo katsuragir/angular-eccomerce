@@ -1,0 +1,155 @@
+<!-- breadcrumb start -->
+<div class="breadcrumb-section" style="padding: 15px 0;">
+  <div class="container-home" >
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="page-title">
+          <h2 style="text-transform: none;">Cart </h2>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!--
+        <nav aria-label="breadcrumb" class="theme-breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]="'/home/vapehan'">Home</a></li>
+            <li class="breadcrumb-item active">cart</li>
+          </ol>
+        </nav>
+        -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- breadcrumb End -->
+<!-- section start -->
+<section class="cart-section section-b-space" style="padding-top: 10px;">
+  <br />
+  <div class="container-home">
+    <div class="col-sm-12 empty-cart-cls text-center" *ngIf="!shoppingCartItems.length">
+      <img src="assets/images/icon-empty-cart.png" class="img-fluid mb-4">
+      <h3><strong>Your Cart is Empty</strong></h3>
+      <h4>Add something to make me happy :)</h4>
+    </div>
+    <div class="row" *ngIf='shoppingCartItems.length'>
+      <div class="col-sm-12" >
+        <div class="scroll-width">
+        <table class="table cart-table table-responsive-xs">
+          <thead>
+            <tr class="table-head">
+
+            </tr>
+          </thead>
+          <tbody *ngFor="let item of shoppingCartItems">
+            <tr>
+              <td class="cart-image">
+                <a [routerLink]="" [attr.data-target]="'#quick-view'+item.id_product" data-toggle="modal" title="Quick View">
+                <img src="{{imgUrl}}/images/product/{{item.image}}" class="img-cart" alt="">
+                </a>
+              </td>
+              <td class="td-cart">
+                <tr style="line-height: 30px;">
+                  <td class="td-style">
+                    <a [routerLink]="" [attr.data-target]="'#quick-view'+item.id_product" data-toggle="modal" title="Quick View" class="cart-name">{{ item.prodName }}</a>
+                  </td>
+                </tr>
+                <tr >
+                  <td class="td-style">
+                    <a *ngIf="item.color" [routerLink]="" class="cart-item">{{ item.color }}</a>
+                    <a *ngIf="item.nic" [routerLink]="" class="cart-item">{{ item.nic }}</a> <br />
+                    <span *ngIf="item.stock > 0 && item.stock <= 10" style="font-size: 10px; color: red;">Stock Left {{ item.stock }}</span>
+                    <span *ngIf="item.stock > 10 && item.stock <= 20" style="font-size: 10px; color: orange;">Stock Left {{ item.stock }}</span>
+                    <span *ngIf="item.stock === 0" style="font-size: 10px; color: darkred;">Out of Stock</span>
+                  </td>
+                </tr>
+                <div class="mobile-cart-content row">
+                  <div class="col-xs-3">
+                    <div class="qty-box">
+                      <div class="input-group">
+                        <input type="text" name="quantity" class="form-control input-number" disabled [value]="item.qty">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-3">
+                    <h2 class="td-color">{{ item.price | currency:' ':'symbol':'1.0-3' }}</h2>
+                  </div>
+                  <div class="col-xs-3">
+                    <h2 class="td-color">
+                    <a (click)="removeItem(item)" class="icon">
+                      <i class="ti-close"></i>
+                    </a>
+                  </h2>
+                  </div>
+                </div>
+              </td>
+              <td class="td-price"><h2 class="cart-price">{{ item.price | currency:' ':'symbol':'1.0-3' }}</h2>
+              </td>
+              <td class="td-qty">
+                <div class="qty-box">
+                  <div class="input-group">
+                    <span class="input-group-prepend">
+                      <button type="button" class="btn quantity-left-minus" (click)="decrement(item.id)" data-type="minus" data-field="" *ngIf="item.qty >= 1" [disabled]="item.qty <= 1">
+                        <i class="ti-angle-left"></i>
+                      </button>
+                      <button type="button" class="btn quantity-left-minus" [attr.data-target]="'#deleteCart'+item.id_product" data-toggle="modal" data-type="minus" data-field="" *ngIf="item.qty < 1 || item.qty < 0">
+                        <i class="ti-angle-left"></i>
+                      </button>
+                    </span>
+                    <input type="text" name="qty" disabled class="form-control input-number" value="{{item.qty}}" style="height: 30px;">
+                    <span class="input-group-prepend" style="margin-left: -1px;" >
+                    <button type="button" class="btn quantity-right-plus" (click)="increment(item.id, item.stock, item.qty)" data-type="plus" data-field="">
+                      <i class="ti-angle-right"></i>
+                    </button>
+                  </span>
+                  </div>
+                </div>
+              </td>
+              <td class="td-harga">
+                  <h2 class="cart-harga">{{ item.harga }}</h2>
+              </td>
+              <td class="td-cancel">
+                <a [routerLink]="" [attr.data-target]="'#deleteCart'+item.id_product" data-toggle="modal" title="Cancel Transaction" class="icon" style="cursor: pointer;">
+                <i class="ti-trash" style="font-size: 24px;"></i>
+                </a>
+              </td>
+            </tr>
+            <app-delete-cart [product]="item"></app-delete-cart>
+            <app-quick-view [products]="shoppingCartItems"></app-quick-view>
+          </tbody>
+        </table>
+      </div>
+        <div class="product-pagination" style="margin-top: 10px; margin-left: 0; width: 100%;">
+          <div class="theme-paggination-block">
+            <div class="container-fluid p-0">
+              <div class="row">
+                <div class="col-xl-6 col-md-6 col-sm-12">
+
+                  <nav aria-label="Page navigation">
+                  </nav>
+
+                  </div>
+                  <div class="col-xl-6 col-md-6 col-sm-12">
+                    <div class="product-search-count-bottom">
+                      <h4 style="margin-top: 8px;">total price : Rp. {{ getTotal()}}</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div>
+
+      </div>
+    </div>
+    <div class="row cart-buttons" style="padding-top: 15px;" *ngIf='shoppingCartItems.length'>
+      <div class="col-6 countinue">
+        <a [routerLink]="['/home/product/collection/all']" class="btn btn-solid" style="text-transform: none;border-radius: 5px;">Continue Shopping</a>
+      </div>
+      <div class="col-6 checkout">
+        <a *ngIf="customer && customer.address || customer && customer.dob || customer && customer.gender || customer && customer.id_city || customer && customer.id_province || customer && customer.nameReceive || customer && customer.id_district || customer && customer.postal" (click)="saveCart(shoppingCartItems);" class="btn btn-solid" style="background-image: linear-gradient(30deg, #00C853 50%, transparent 50%); border: 2px solid #00C853; text-transform: none;border-radius: 5px;">Check Out</a>
+        <a *ngIf="customer && !customer.address || customer && !customer.dob || customer && !customer.gender || customer && !customer.id_city || customer && !customer.id_province || customer && !customer.nameReceive || customer && !customer.id_district || customer && !customer.postal" [attr.data-target]="'#editProfile'+customer.id" data-toggle="modal" title="Quick View" class="btn btn-solid" style="background-image: linear-gradient(30deg, #00C853 50%, transparent 50%); border: 2px solid #00C853; text-transform: none;border-radius: 5px; cursor: pointer;">Check Out</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!--section end-->

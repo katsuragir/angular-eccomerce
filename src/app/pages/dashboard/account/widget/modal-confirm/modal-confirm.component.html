@@ -1,0 +1,149 @@
+<!-- Quick-view modal popup start-->
+<div class="modal fade bd-example-modal-lg theme-modal quickviewm" [id]="'confirmPayment1'+order.id_order" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document" *ngIf="order">
+      <div class="modal-content quick-view-modal">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <form [formGroup]="confirmPayment" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-lg-12 col-xs-12">
+                <div class="box-title">
+                  <h3>Confirm Payment Form</h3>
+
+                  <span>
+                    <div class="alert alert-danger" style="max-width: 100% !important;" role="alert" #alertNotice>
+                      <div class="alert-text">Silahkan isi seluruh formulir di bawah ini, untuk melakukan konfirmasi pembayaran.</div>
+                    </div>
+
+                  </span>
+                  <hr>
+                </div>
+                <!--<app-auth-notice></app-auth-notice>-->
+                <div class="row">
+                  <div class="col-lg-12">
+                    <label>Transaction ID : </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input oninput="this.value = this.value.toUpperCase()" [ngClass]="{ 'is-invalid': submitted && f.transaction.errors }" class="form-control" style="height: 30px; font-size:14px;" type="text" placeholder="Contoh: J3VEUBDA" formControlName="transaction">
+                    <div *ngIf="submitted && f.transaction.errors" class="invalid-feedback">
+                      <div *ngIf="f.transaction.errors.required">Transaction ID is required</div>
+                    </div>
+                    <div *ngIf="submitted && f.transaction.errors" class="invalid-feedback">
+                      <div *ngIf="f.transaction.errors.minlength">Transaction ID is required</div>
+                    </div>
+                    <div *ngIf="submitted && f.transaction.errors" class="invalid-feedback">
+                      <div *ngIf="f.transaction.errors.maxlength">Transaction ID is required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <label>Total Amount : </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input [ngClass]="{ 'is-invalid': submitted && f.total.errors }" class="form-control" style="height: 30px; font-size:14px;" type="text" placeholder="IDR 10.XXX,-" formControlName="total">
+                  </div>
+                  <div *ngIf="submitted && f.total.errors" class="invalid-feedback">
+                    <div *ngIf="f.total.errors.required">Total Name is required</div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <label>First Name : </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" class="form-control" style="height: 30px; font-size:14px;" type="text" placeholder="First Name" formControlName="firstname" required>
+                    <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                      <div *ngIf="f.firstname.errors.required">Firstname is required</div>
+                    </div>
+                    <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                      <div *ngIf="f.firstname.errors.minlength">Firstname ID is required</div>
+                    </div>
+                    <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                      <div *ngIf="f.firstname.errors.maxlength">Firstname ID is required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <label>Last Name : </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input class="form-control" style="height: 30px; font-size:14px;" type="text" formControlName="lastname" placeholder="Last Name">
+
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <label>Date of Payment : </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input [ngClass]="{ 'is-invalid': submitted && f.date.errors }" class="form-control" style="height: 30px; font-size:14px;" type="date" formControlName="date" required>
+                    <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                      <div *ngIf="f.date.errors.required">Date is required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <label>Transfer Account : </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <select class="form-control" style="height: 30px; font-size:14px;" [ngClass]="{ 'is-invalid': submitted && f.transfer.errors }" formControlName="transfer" required>
+                      <option value="" selected>
+                        Choose One
+                      </option>
+                      <option value="1">
+                        Rekening BCA *******658 - Lee Handoko
+                      </option>
+                    </select>
+                    <div *ngIf="submitted && f.transfer.errors" class="invalid-feedback">
+                      <div *ngIf="f.transfer.errors.required">Transfer is required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <label>Your Virtual Account : </label>
+                  </div>
+                  <!--
+                  <div class="col-lg-12">
+                    <span style="font-size: 10px; color: black;">Note:untuk mempercepat proses untuk bank yang sama</span>
+                  </div>
+                  -->
+                  <div class="col-lg-12">
+                    <input [ngClass]="{ 'is-invalid': submitted && f.virtual.errors }" class="form-control" style="height: 30px; font-size:14px;" type="number" formControlName="virtual" placeholder="Your Virtual Account">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <label>Leave a Note : </label>
+                  </div>
+                  <div class="col-lg-12">
+                    <textarea class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.note.errors }" formControlName="note" placeholder="Leave a Note"></textarea>
+                  </div>
+                </div>
+
+                <hr />
+                <div class="row">
+                  <div class="col-lg-12 product-buttons">
+                    <button  class="btn btn-solid">Confirm</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Quick-view modal popup end-->

@@ -1,0 +1,29 @@
+<!-- brand filter start
+<div class="collection-collapse-block open">
+  <h3 class="collapse-block-title">brand</h3>
+  <div class="collection-collapse-block-content">
+    <div class="collection-brand-filter">
+      <div class="custom-control custom-checkbox collection-filter-checkbox" *ngFor="let filter of tagsFilters">
+        <input type="checkbox" class="custom-control-input" [value]="filter.id" (change)=checkedFilter($event) id="{{filter.id}}">
+        <label class="custom-control-label" for="{{filter.id}}">{{filter.name}}</label>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+<div class="collection-mobile-back">
+    <span class="filter-back">
+      <i class="fa fa-angle-left" aria-hidden="true"></i> back
+  </span>
+  </div>
+  <div class="collection-collapse-block border-0 open"  style="margin-bottom: 0;" >
+    <h3 class="collapse-block-title" style="padding-bottom: 25px;">Brand</h3>
+    <div class="collection-collapse-block-content">
+      <div class="collection-brand-filter">
+        <ul class="category-list" *ngFor="let filter of tagsFilters">
+          <li style="margin-top: 0; padding-bottom: 10px;"><a [routerLink]="'/home/product/brand/'+ filter.id">{{filter.name}}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>

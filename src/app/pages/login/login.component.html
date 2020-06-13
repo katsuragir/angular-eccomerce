@@ -1,0 +1,60 @@
+<!-- breadcrumb start -->
+<div class="breadcrumb-section" style="padding: 15px 0;">
+    <div class="container-home">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                  <h2 style="text-transform: none;">Customer's Login</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+              <!--
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="'/home/one'">Home</a></li>
+                        <li class="breadcrumb-item active" >login</li>
+                    </ol>
+                </nav>
+                -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!-- section start -->
+<section class="login-page section-b-space" style="padding-top: 10px;">
+    <div class="container-home" style=" margin-bottom: 15px;">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>Login</h3>
+                <div class="theme-card">
+                  <app-auth-notice></app-auth-notice>
+                  <div style="margin-top: 5px;" class="alert alert-primary" role="alert" #alertNotice>
+                    <div class="alert-text" [innerHTML]="pesan"></div>
+                  </div>
+                    <form class="theme-form" [formGroup]="loginForm" autocomplete="off">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" id="email" placeholder="Email" required="" formControlName="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="review">Password</label>
+                            <input type="password" class="form-control" id="review" placeholder="Enter your password" required="" formControlName="password">
+                            <a class="forget" [routerLink]="['/pages/forgetpassword']">Forget Your Password</a>
+                        </div>
+                        <button class="btn btn-solid" (click)="submit()">Login</button>&nbsp;||&nbsp;<button class="btn btn-gle" (click)="signinWithGoogle()"><i class="fa fa-google" style="padding-right: 10px;"></i>Google</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6 right-login">
+                <h3>New Customer</h3>
+                <div class="theme-card authentication-right">
+                    <h6 class="title-font">Register</h6>
+                    <p>Register for a free account at our store. Registration is quick and easy. It allows you to be able to order from our shop.</p>
+                    <button class="btn btn-solid" [routerLink]="['/pages/register']">Register</button>&nbsp;||&nbsp;<button class="btn btn-gle" (click)="signupWithGoogle()"><i class="fa fa-google" style="padding-right: 10px;"></i>Google</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Section ends-->

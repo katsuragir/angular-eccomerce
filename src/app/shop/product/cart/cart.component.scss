@@ -1,0 +1,187 @@
+.cart-image {
+  padding: 7px 0;
+  width: 100px;
+  vertical-align: unset;
+  min-width: 0;
+}
+
+.img-cart {
+  border-radius: 7px;
+  height: 70px;
+  width: 70px;
+}
+
+.td-style {
+  border-bottom: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.cart-name {
+  font-size: 17px;
+  color: #1b1b1b;
+}
+
+.cart-item {
+  font-size: 15px;
+}
+
+.td-price {
+  text-align: right;
+}
+
+.cart-price {
+  text-transform: none;
+  font-weight: 300;
+}
+
+.td-qty {
+  text-align: center;
+}
+
+.input-group-prepend {
+  height: 30px;
+  margin-right: -2px;
+  display: flex;
+}
+
+.td-harga {
+  text-align: right;
+}
+
+.cart-harga {
+  text-transform: none;
+  font-weight: 300;
+}
+
+.td-cancel {
+  min-width: 70px;
+  text-align: center;
+}
+
+@media(max-width: 919px) {
+  .td-price {
+    min-width: 90px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .td-cart {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .td-qty {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .td-harga {
+    min-width: 90px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .td-cancel {
+    min-width: 50px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+@media(max-width: 830px) {
+  .cart-name {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .cart-item {
+    font-size: 13px;
+  }
+  .cart-price {
+    font-size: 17px;
+    font-weight: 400;
+  }
+  .cart-harga {
+    font-size: 17px;
+    font-weight: 400;
+  }
+}
+
+@media(max-width: 767px) {
+  .cart-item {
+    justify-content: left;
+  }
+  .cart-name {
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .cart-item {
+    font-size: 11px;
+  }
+  .cart-price {
+    font-size: 15px;
+    font-weight: 400;
+  }
+  .cart-harga {
+    font-size: 15px;
+    font-weight: 400;
+  }
+}
+
+@media(max-width: 620px) {
+  .td-price {
+    min-width: 50px;
+  }
+  .td-harga {
+    min-width: 50px;
+  }
+}
+
+@media(max-width: 577px) {
+  .td-harga {
+    display: none;
+  }
+  .cart-price {
+    font-size: 13px;
+    font-weight: 400;
+  }
+  .cart-harga {
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  .input-group-prepend {
+    .btn {
+      padding: 1px 6px;
+    }
+  }
+
+  .td-qty {
+    min-width: 110px;
+  }
+}
+
+@media(max-width: 480px) {
+  .input-group {
+    .form-control {
+      width: 38px !important;
+      padding: 0.375rem 0.1rem;
+    }
+  }
+  .scroll-width {
+    overflow-x:auto;
+  }
+}
+
+@media(max-width: 360px) {
+  .checkout{
+    flex: 0 0 40%;
+    max-width: 40%;
+  }
+
+  .countinue {
+    flex: 0 0 60%;
+    max-width: 60%;
+  }
+}
+

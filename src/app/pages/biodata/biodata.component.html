@@ -1,0 +1,132 @@
+<!-- breadcrumb start -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2>register forms</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="'/home/vapehan'">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">register forms</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb end -->
+<!-- section start -->
+<section class="register-page section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>register forms</h3>
+                <div class="theme-card">
+                  <app-auth-notice></app-auth-notice>
+                  <form class="theme-form" [formGroup]="registerForm" *ngFor="let cus of customer">
+                      <div class="form-row">
+                          <div class="col-md-3">
+                              <label for="firstname">firstname</label>
+                              <input matInput type="text" class="form-control" id="fname" placeholder="First Name" value="{{cus.firstname}}" formControlName="firstname">
+                          </div>
+                          <div class="col-md-3">
+                            <label for="lastname">lastname</label>
+                            <input matInput type="text" class="form-control" id="lname" placeholder="Last Name" value="{{cus.lastname}}" formControlName="lastname">
+                          </div>
+                          <div class="col-md-6">
+                              <label for="email">email</label>
+                              <input matInput type="text" class="form-control" id="email" placeholder="Email" value="{{cus.email}}" formControlName="email">
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="col-md-6">
+                              <label for="gender">gender</label>
+                              <select class="form-control" formControlName="gender" id="gender" required>
+                                <option value="" selected>Select Genre</option>
+                                <option *ngFor="let gen of gender; let i = index" [value]="gender[i].id">{{gender[i].name}}</option>
+                              </select>
+                          </div>
+                          <div class="col-md-6">
+                              <label for="phone">Phone</label>
+                              <input matInput type="text" class="form-control" placeholder="example: +6282124125488" maxlength="13" pattern="[0-9]+" id="phone" formControlName="phone" required>
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="col-md-6" [formGroup]="image">
+                              <label for="image">image upload</label>
+                              <app-file-upload formControlName="image" [progress]="progress"></app-file-upload>
+                              <mat-error *ngIf="hasError('image', 'requiredFileType')">
+                                  <strong>Only JPG.</strong>
+                              </mat-error>
+                          </div>
+                        <div class="col-md-6">
+                          <label for="DOB">Date Of Birth</label>
+                          <div class="input-group">
+                              <input class="form-control" formControlName="dob" type="date" required>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="col-md-6">
+                              <label for="address">address</label>
+                              <input matInput class="form-control" type="text" id="address" formControlName="address" required>
+                          </div>
+                          <div class="col-md-6">
+                              <label for="province">province</label>
+                              <select class="form-control" formControlName="province" #mySelect (change)='onOptionsSelected(mySelect.value)' required>
+                                  <option value="" selected>Select Province</option>
+                                  <option *ngFor="let prov of province.result" value="{{prov.province_id}}">{{prov.province}}</option>
+                              </select>
+                          </div>
+                      </div>
+                      <div class="form-row" *ngIf="selectedValue">
+                          <div class="col-md-6">
+
+                          </div>
+                          <div class="col-md-6" >
+                              <label for="city">city</label>
+                              <select class="form-control" formControlName="city" #myCity (change)='onOptionDistrict(myCity.value)' required>
+                                  <option value="" selected>Select City</option>
+                                  <option *ngFor="let city of city.result" value="{{city.city_id}}">{{city.city_name}}</option>
+                              </select>
+                          </div>
+                      </div>
+                      <br *ngIf="selectedValue" />
+                      <br *ngIf="selectedValue" />
+                      <div class="form-row" *ngIf="selectDistrict">
+                          <div class="col-md-6">
+
+                          </div>
+                          <div class="col-md-6" >
+                              <label for="subdistrict">sub district</label>
+                              <select class="form-control" formControlName="district" #myPostal (change)="onShowPostal(myPostal.value)" required>
+                                  <option value="" selected>Select District</option>
+                                  <option *ngFor="let dist of district.result" value="{{dist.subdistrict_id}}">{{dist.subdistrict_name}}</option>
+                              </select>
+                          </div>
+                      </div>
+                      <br *ngIf="selectDistrict"/>
+                      <br *ngIf="selectDistrict"/>
+                      <div class="form-row" *ngIf="showPostal">
+                          <div class="col-md-6">
+
+                          </div>
+                          <div class="col-md-6" >
+                              <label for="postal" >Postal pos</label>
+                              <input matInput class="form-control" formControlName="postal" type="text" id="postal" required>
+                          </div>
+
+                      </div>
+                      <div class="form-row">
+                        <button (click)="submit()" class="btn btn-solid">Submit</button>
+                      </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

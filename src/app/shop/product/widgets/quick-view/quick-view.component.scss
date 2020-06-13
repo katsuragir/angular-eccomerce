@@ -1,0 +1,37 @@
+.demo-one {
+  height: 100px;
+  background-color: #FFFFFF;
+  img {
+    height: 100px;
+    width: 100px;
+    margin: 0 10px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .demo-one {
+    height: 100px;
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}
+
+.demo-two {
+  height: 500px;
+}
+
+.demo-border {
+  padding: 10px 10px 10px 10px;
+  box-sizing: border-box;
+  border: 1px solid;
+  border-color: #CFCFCF;
+  margin-bottom: 20px;
+}
+
+.discount {
+  padding-left: 5px;
+  color: #ff4c3b;
+  font-size: 12px;
+}

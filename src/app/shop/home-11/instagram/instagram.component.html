@@ -1,0 +1,23 @@
+<!-- instagram section -->
+<section class="instagram" style="padding-top: 0;">
+  <div class="container-fluid " style="padding-top: 27px;">
+    <div class="row">
+      <div class="col-md-12 p-0">
+        <h2 class="title-borderless"># instagram</h2>
+        <ngx-slick-carousel class="no-arrow slick-instagram" #slickModal="slick-carousel" [config]="instaSlideConfig">
+          <div ngxSlickItem *ngFor="let insta of instagram" style="height: auto;">
+            <a [href]="insta.link" target="_blank" >
+              <div class="instagram-box" style="height: 100%;">
+                <img [src]="insta.images.standard_resolution.url" alt="Avatar" style="object-fit: scale-down; width:100%; height:100%;">
+                <div class="overlay">
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                </div>
+              </div>
+            </a>
+          </div>
+        </ngx-slick-carousel>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- instagram section end -->

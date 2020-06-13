@@ -1,0 +1,443 @@
+<!-- Quick-view modal popup start-->
+<div class="modal fade bd-example-modal-lg theme-modal quickviewm" [id]="'cancelTransaction'+order.id_order" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="order">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content quick-view-modal" style="width: 70%;">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <form [formGroup]="cancelPayment" (ngSubmit)="submit(order)">
+          <div class="row">
+            <div class="col-lg-12 col-xs-12">
+              <div class="box-title">
+                <h3 class="text-cancel">Cancel Transaction ID <span style="color: red;">{{order.id_order}}</span></h3>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-12">
+                  <label class="label-cancel">Reason:</label>
+                </div>
+                <div class="col-lg-12">
+                    <input [ngClass]="{ 'is-invalid': submitted && f.reason.errors }" class="form-control" style="height: 30px; font-size:14px;" type="text" placeholder="Your Reason" formControlName="reason" required>
+                    <div *ngIf="submitted && f.reason.errors" class="invalid-feedback">
+                      <div *ngIf="f.reason.errors.required">Reason is required</div>
+                    </div>
+                </div>
+              </div>
+
+              <hr />
+              <div class="row">
+                <div class="col-lg-6 product-buttons">
+                    <span><button [routerLink]="" class="btn btn-solid" ><i class="fa fa-check-square-o" aria-hidden="true"></i> Yes</button></span> | <span><a [routerLink]="" data-dismiss="modal" aria-label="Close" class="btn btn-outline" ><i class="fa fa-times" aria-hidden="true"></i> No</a></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Quick-view modal popup end-->
+
+<!--=========================================================================================================================================================================================================-->
+
+<!-- Quick-view modal popup start-->
+<div class="modal fade bd-example-modal-lg theme-modal quickviewm" [id]="'itemReceived'+order.id_order" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="order">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content quick-view-modal" style="width: 70%;">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <form>
+            <div class="row">
+              <div class="col-lg-12 col-xs-12">
+                <div class="box-title">
+                  <h3 class="text-cancel">Transaction ID {{order.id_order}}</h3>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <label class="label-cancel">Have you received this item?</label>
+                  </div>
+                </div>
+
+                <hr />
+                <div class="row">
+                  <div class="col-lg-6 product-buttons">
+                     <span><a [routerLink]="" (click)="Received(order)" class="btn btn-solid" ><i class="fa fa-check-square-o" aria-hidden="true"></i> Yes</a></span> | <span><a [routerLink]="" data-dismiss="modal" aria-label="Close" class="btn btn-outline" ><i class="fa fa-times" aria-hidden="true"></i> No</a></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Quick-view modal popup end-->
+
+<!--=========================================================================================================================================================================================================-->
+
+    <!-- Quick-view modal popup start-->
+<div class="modal fade bd-example-modal-lg theme-modal quickviewm" [id]="'invoiceTransaction'+order.id_order" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="order">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div style="margin: 0 auto;">
+      <div class="modal-content quick-view-modal">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            <div class="row">
+              <div class="col-lg-12 col-xs-12">
+                <div class="box-title" style="text-align: center; margin-bottom: 10px;">
+                  <h3>Invoice Transaction ID </h3>
+                  <h3>{{order.id_order}}</h3>
+                </div>
+                <hr />
+                <table *ngFor="let item of product" style="width: 100%; border-bottom: 1px solid #f0e4e4; margin-bottom: 5px;">
+                    <th style="width: 10%;">
+                      <div style="margin: 0 10px 20px 10px;">
+                        <img style="width: 50px; height: 50px; margin-right: 10px; border-radius: 50%;" src="{{imgUrl}}/images/product/{{item.image}}">
+                      </div>
+                    </th>
+                    <th>
+                      <tr>
+                        <th style="font-weight: 500">
+                          <div style="text-align: left; transform: translate(0, -10px); color: #1b1b1b">
+                            {{ item.name }} <span *ngIf="item.color" style="font-size: 11px; font-weight: 500; color: #424242;"> ( {{item.color}} )</span><span *ngIf="item.nic" style="font-size: 11px; font-weight: 500;color: #424242;"> ( {{item.nic}} )</span>
+                          </div>
+                        </th>
+                      </tr>
+                      <tr style="transform: translate(0, -10px);">
+                        <th>
+                          <tr style="margin: 0 10px; color: darkgray;">
+                            <th style="font-weight: 500;">Qty: {{ item.quantity }}</th>
+                            <th style="font-weight: 500;width: 150px;text-align: right;">Rp. {{ item.price }}</th>
+                            <th style="font-weight: 500;width: 150px;text-align: right;">Rp. {{ item.subtotal }}</th>
+                          </tr>
+                        </th>
+                      </tr>
+                  </th>
+                  </table>
+                  <table style="border-top: 1px solid #f0e4e4; width: 100%;">
+                    <th>
+                      <div style="margin: 0 10px 20px 10px;">
+
+                      </div>
+                    </th>
+                    <th>
+                      <tr>
+                        <th>
+                          <div style="text-align: left; transform: translate(0, -10px);">
+
+                          </div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th>
+                          <tr style="margin: 0 10px;">
+                            <th style="font-weight: 100;"></th>
+                            <th style="font-weight: 400;width: 200px;text-align: right; color: black;">Weight: </th>
+                            <th style="font-weight: 400;width: 163px;text-align: right; color: red;" *ngIf="weight">{{ weight }} Kg</th>
+                          </tr>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th>
+                          <tr style="margin: 0 10px;">
+                            <th style="font-weight: 100;"></th>
+                            <th style="font-weight: 400;width: 200px;text-align: right; color: black;">Total Ongkir</th>
+                            <th style="font-weight: 400;width: 163px;text-align: right; color: red;" *ngIf="ongkir">Rp. {{ ongkir }}</th>
+                          </tr>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th>
+                          <tr style="margin: 0 10px;">
+                            <th style="font-weight: 100;"></th>
+                            <th style="font-weight: 400;width: 200px;text-align: right; color: black;">Sub Total</th>
+                            <th style="font-weight: 400;width: 163px;text-align: right; color: red;" *ngIf="stotal">Rp. {{ stotal }}</th>
+                          </tr>
+                        </th>
+                      </tr>
+                    </th>
+                  </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <!-- Quick-view modal popup end-->
+
+<!--==================================================== Payment Method ==============================================================================================-->
+<!-- Quick-view modal popup start-->
+<div class="modal fade bd-example-modal-lg theme-modal quickviewm" [id]="'paymentMethod'+order.id_order" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="order">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content quick-view-modal" style="width: 70%;">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <form [formGroup]="cancelPayment" (ngSubmit)="submit(order)">
+          <div class="row">
+            <div class="col-lg-12 col-xs-12">
+              <div class="box-title" style="margin-bottom: 15px;">
+                <h3 class="text-cancel" style="text-align-last: center;">Payment Method <span style="color: red;">{{order.payment_name}}</span></h3>
+              </div>
+
+              <!--
+                Mandiri VA
+              -->
+
+              <div *ngIf="order.payment === '41'">
+                <div class="row" style="margin-bottom: 15px;">
+                  <div class="col-lg-12">
+                    <label class="label-cancel">Via Mandiri ATM :</label>
+                  </div>
+                  <div class="col-lg-12">
+                      <p style="padding-top: 0;">1. Masukkan kartu ATM Mandiri anda, lalu masukkan PIN ATM anda.</p>
+                      <p style="padding-top: 0;">2. Pilih menu "Bayar / Beli".</p>
+                      <p style="padding-top: 0;">3. Pilih menu "Lainnya" lalu yang lain "Lainnya".</p>
+                      <p style="padding-top: 0;">4. Pilih menu "Ecommerce".</p>
+                      <p style="padding-top: 0;">5. Masukkan 5 digit pertama dari nomor Mandiri VA (contoh: 88890)</p>
+                      <p style="padding-top: 0;">6. Masukkan Nomor VA lengkap <span style="color: red;">{{order.payment_code}}</span>.</p>
+                      <p style="padding-top: 0;">7. Masukkan jumlahnya.</p>
+                      <p style="padding-top: 0;">8. Nomor VA, Nama, dan Jumlah akan muncul pada layar.</p>
+                      <p style="padding-top: 0;">9. Tekan 1 dan pilih "YA".</p>
+                      <p style="padding-top: 0;">10. Konfirmasikan pembayaran dan pilih "YA".</p>
+                      <p style="padding-top: 0;">11. Transaksi selesai. Harap simpan tanda terima Anda.</p>
+                  </div>
+                </div>
+                <!--
+                <div class="row" style="margin-bottom: 15px;">
+                  <div class="col-lg-12">
+                    <label class="label-cancel">Via Internet Banking Individual Bank Mandiri :</label>
+                  </div>
+                  <div class="col-lg-12">
+                      <p style="padding-top: 0;">1. Access https://ib.bankmandiri.co.id/retail/Login.do?action=form&lang=in_ID.</p>
+                      <p style="padding-top: 0;">2. Input User ID and PIN, then click login.</p>
+                      <p style="padding-top: 0;">3. Choose Menu " Pembayaran".</p>
+                      <p style="padding-top: 0;">4. Choose Menu "Multi Payment".</p>
+                      <p style="padding-top: 0;">5. Choose Billing Name "DOKU Merchant".</p>
+                      <p style="padding-top: 0;">6. Input the full VA Number <span style="color: red;">{{order.payment_code}}</span>.</p>
+                      <p style="padding-top: 0;">7. Input the amount.</p>
+                      <p style="padding-top: 0;">8. Click "Continue".</p>
+                      <p style="padding-top: 0;">9. Tick on "Total Tagihan".</p>
+                      <p style="padding-top: 0;">10. Click "Continue".</p>
+                      <p style="padding-top: 0;">11. Input Mandiri PIN Appli 1 from Token.</p>
+                      <p style="padding-top: 0;">12. Transaction is done. Please keep your receipt.</p>
+                  </div>
+                </div>
+                -->
+                <div class="row" style="margin-bottom: 15px;">
+                  <div class="col-lg-12">
+                    <label class="label-cancel">Via Mandiri Online Apps :</label>
+                  </div>
+                  <div class="col-lg-12">
+                      <p style="padding-top: 0;">1. Instal Aplikasi Mandiri Online.</p>
+                      <p style="padding-top: 0;">2. Masukkan ID Pengguna dan PIN, lalu klik masuk.</p>
+                      <p style="padding-top: 0;">3. Pilih Menu " Pembayaran".</p>
+                      <p style="padding-top: 0;">4. Pilih Menu "Pembayaran Baru".</p>
+                      <p style="padding-top: 0;">5. Pilih Menu "Multi Payment".</p>
+                      <p style="padding-top: 0;">6. Pilih Nama Penagihan "DOKU VA Aggregator".</p>
+                      <p style="padding-top: 0;">7. Masukkan Nomor VA lengkap <span style="color: red;">{{order.payment_code}}</span>.</p>
+                      <p style="padding-top: 0;">8. Klik Lanjut, lalu Masukkan Jumlah.</p>
+                      <p style="padding-top: 0;">9. Klik "Konfirmasi".</p>
+                      <p style="padding-top: 0;">10. Klik "Lanjut".</p>
+                      <p style="padding-top: 0;">11. Klik "Konfirmasi".</p>
+                      <p style="padding-top: 0;">12. Masukan MPIN (SMS Banking PIN).</p>
+                      <p style="padding-top: 0;">13. Transaksi selesai. Harap simpan tanda terima Anda.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!--
+                Danamon VA
+              -->
+              <div *ngIf="order.payment === '33'">
+                <div class="row" style="margin-bottom: 15px;">
+                  <div class="col-lg-12">
+                    <label class="label-cancel">Via Danamon ATM :</label>
+                  </div>
+                  <div class="col-lg-12">
+                      <p style="padding-top: 0;">1. Insert Danamon ATM Card, and then enter ATM PIN.</p>
+                      <p style="padding-top: 0;">2. Choose "Pembayaran" menu, and then "Lainnya" .</p>
+                      <p style="padding-top: 0;">3. Choose "Virtual Account" menu.</p>
+                      <p style="padding-top: 0;">4. Enter account number with "Virtual Account Number" <span style="color: red;">{{order.payment_code}}</span>.</p>
+                      <p style="padding-top: 0;">5. When Transfer Confirmation appears, choose "Ya" / "Lanjut"</p>
+                      <p style="padding-top: 0;">6. Transaction is done. Please keep transaction receipt.</p>
+                  </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 15px;">
+                  <div class="col-lg-12">
+                    <label class="label-cancel">Via Other Bank ATM :</label>
+                  </div>
+                  <div class="col-lg-12">
+                      <p style="padding-top: 0;">1. Insert ATM card, then enter ATM PIN.</p>
+                      <p style="padding-top: 0;">2. Choose menu "Transfer Antar Bank".</p>
+                      <p style="padding-top: 0;">3. Enter Destination Bank Code: Danamon (Kode Bank Code: 011) + Virtual Account Number <span style="color: red;">{{order.payment_code}}</span>.</p>
+                      <p style="padding-top: 0;">4. Enter "Amount".</p>
+                      <p style="padding-top: 0;">5. When Transfer Confirmation appears, choose "Ya" / "Lanjut".</p>
+                      <p style="padding-top: 0;">6. Transaction is done. Please keep transaction receipt.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!--
+                Cimb VA
+              -->
+
+              <div *ngIf="order.payment === '32'">
+                <div class="row" style="margin-bottom: 15px;">
+                  <div class="col-lg-12">
+                    <label class="label-cancel">Via CIMB Niaga ATM :</label>
+                  </div>
+                  <div class="col-lg-12">
+                      <p style="padding-top: 0;">1. Insert CIMB Niaga ATM card, then enter "ATM PIN".</p>
+                      <p style="padding-top: 0;">2. Choose "Transfer".</p>
+                      <p style="padding-top: 0;">3. Choose "Rekening CIMB Niaga".</p>
+                      <p style="padding-top: 0;">4. Enter "Amount" then enter "Virtual Account Number".</p>
+                      <p style="padding-top: 0;">5. When confirmation appears, choose "Ya" / "Lanjut"</p>
+                      <p style="padding-top: 0;">6. Transaction is done, please keep your receipt.</p>
+                  </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 15px;">
+                  <div class="col-lg-12">
+                    <label class="label-cancel">Via CIMB NIAGA Mobile Banking :</label>
+                  </div>
+                  <div class="col-lg-12">
+                      <p style="padding-top: 0;">1. Login Mobile Banking CIMB Niaga.</p>
+                      <p style="padding-top: 0;">2. Choose menu Transfer, then choose Rekening Ponsel/CIMB Niaga.</p>
+                      <p style="padding-top: 0;">3. Choose "Rekening sumber".</p>
+                      <p style="padding-top: 0;">4. Choose "Rekening Tujuan": CASA.</p>
+                      <p style="padding-top: 0;">5. Enter "Virtual Account Number" and "Amount".</p>
+                      <p style="padding-top: 0;">6. When confirmation appears, choose "Ya" / "Lanjut".</p>
+                      <p style="padding-top: 0;">7. Transaction is done, please keep your receipt.</p>
+                  </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 15px;">
+                  <div class="col-lg-12">
+                    <label class="label-cancel">Via CIMB Niaga Internet Banking :</label>
+                  </div>
+                  <div class="col-lg-12">
+                      <p style="padding-top: 0;">1. Login to CIMB Niaga Internet Banking.</p>
+                      <p style="padding-top: 0;">2. Choose menu "TRANSFER".</p>
+                      <p style="padding-top: 0;">3. Choose source account in "Transfer From", enter amount, then in "Transfer To" field choose "Other Account (CIMB Niaga/Rekening Ponsel)", then click "NEXT".</p>
+                      <p style="padding-top: 0;">4. Choose "BANK CIMB NIAGA", then enter "Virtual Account Number" in "Beneficiary" field, then click "NEXT".</p>
+                      <p style="padding-top: 0;">5. Enter "mPIN" then click "Submit".</p>
+                      <p style="padding-top: 0;">6. Transaction is done, please keep your receipt.</p>
+                  </div>
+                </div>
+                <div class="row" style="margin-bottom: 15px;">
+                  <div class="col-lg-12">
+                    <label class="label-cancel">Via Other Bank ATM :</label>
+                  </div>
+                  <div class="col-lg-12">
+                      <p style="padding-top: 0;">1. Insert ATM card, then enter ATM PIN.</p>
+                      <p style="padding-top: 0;">2. Choose menu Transfer Antar Bank.</p>
+                      <p style="padding-top: 0;">3. Enter Kode Bank Tujuan : BRI (Kode Bank : 022) + Virtual Account Number <span style="color: red;">{{order.payment_code}}</span>.</p>
+                      <p style="padding-top: 0;">4. Enter amount.</p>
+                      <p style="padding-top: 0;">5. When Transfer Confirmation appears, choose "Ya" / "Lanjut".</p>
+                      <p style="padding-top: 0;">6. Transaction is done, please keep your receipt.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!--
+                Alfa VA
+              -->
+
+              <div *ngIf="order.payment === '35'">
+                <div class="row" style="margin-bottom: 15px;">
+                  <div class="col-lg-12">
+                    <label class="label-cancel">Tata cara pembayaran Via Alfa Group :</label>
+                  </div>
+                  <div class="col-lg-12">
+                      <p style="padding-top: 0;">1. Catat kode pembayaran Anda dan pergi ke toko Alfamart, Alfa Midi, Lawson atau DAN + DAN terdekat.</p>
+                      <p style="padding-top: 0;">2. Beri tahu kasir bahwa Anda ingin melakukan pembayaran Vapehan.</p>
+                      <p style="padding-top: 0;">3. <span>Jika kasir tidak mengetahui tentang Vapehan, berikan instruksi untuk membuka terminal transaksi elektronik, pilih menu "no. 2 Pembayaran atau cari pada pencarian menu".</span></p>
+                      <p style="padding-top: 0;">4. Minta kasir untuk menekan "Shift" dan "?" dan kemudian ketik Vapehan, lanjutkan dengan mengklik OK.</p>
+                      <p style="padding-top: 0;">5. Minta kasir untuk memilih "no.1 Vapehan - Pembayaran Vapehan".</p>
+                      <p style="padding-top: 0;">6. Kasir akan meminta kode pembayaran Anda. Informasikan kode pembayaran Anda <span style="color: red;">{{order.payment_code}}</span>. Kasir akan mengonfirmasi data pelanggan seperti Nama Merchant, Nama Konsumen, dan Nominal. Lakukan pembayaran ke kasir sesuai dengan jumlah transaksi Anda.</p>
+                      <p style="padding-top: 0;">7. Dapatkan tanda terima Anda sebagai bukti pembayaran.</p>
+                      <p style="padding-top: 0;">8. Selesai.</p>
+                  </div>
+                </div>
+              </div>
+
+              <hr />
+              <div class="row">
+                <div class="col-lg-6 product-buttons">
+                    <span><a [routerLink]="" data-dismiss="modal" aria-label="Close" class="btn btn-outline" ><i class="fa fa-times" aria-hidden="true"></i> Close</a></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Quick-view modal popup end-->
+
+<!-----------------------------------------Check Resi--------------------------------------------->
+<!-- Quick-view modal popup start-->
+<div class="modal fade bd-example-modal-lg theme-modal quickviewm" [id]="'checkResi'+order.id_order" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="order">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content quick-view-modal" style="width: 70%;">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <form>
+          <div class="row">
+            <div class="col-lg-12 col-xs-12">
+              <div class="box-title" style="text-align-last: center;">
+                <h3 class="text-cancel">No Resi : {{order.resiid}}</h3>
+              </div>
+              <hr />
+              <div class="col-lg-12">
+                <div class="row" *ngIf="check.length > 0; else notFound">
+                  <div style="text-align: center; text-align-last: center; width: 100%;">
+                    <label style="text-align: center;">Check Resi</label>
+                  </div>
+                  <ul class="row" style="padding: 0 10%;">
+                    <li class="col-12" *ngFor="let manifest of check" style="display: list-item; padding-top: 10px; padding-bottom: 10px;">
+                      {{manifest.manifest_description}} at {{manifest.manifest_date}} - {{manifest.manifest_time}}
+                    </li>
+                  </ul>
+
+                </div>
+                <ng-template #notFound>
+                  <div class="row">
+                    <div class="col-sm-12 text-center section-b-space mt-5 no-found" >
+                      <img src="assets/images/empty-search.jpg" class="img-fluid mb-4">
+                      <h3>Sorry! We couldn't find the resi you were looking For in our database system!!!    </h3>
+                      <p>Please check in other check resi site.</p>
+                      <!--<a [routerLink]="'/home/product/collection'" class="btn btn-solid">continue shopping</a>-->
+                    </div>
+                  </div>
+                </ng-template>
+              </div>
+
+              <hr />
+              <div class="row">
+                <div class="col-lg-6 product-buttons">
+                   <span><a [routerLink]="" data-dismiss="modal" aria-label="Close" class="btn btn-outline" ><i class="fa fa-times" aria-hidden="true"></i> Close</a></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Quick-view modal popup end-->

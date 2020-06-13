@@ -1,0 +1,11 @@
+@media (max-width: 480px) {
+    .img-fluid {
+        &.news {
+            width: 30% !important;
+        }
+    }
+
+    .news-box {
+        margin: unset !important;
+    }
+}

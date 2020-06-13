@@ -1,0 +1,57 @@
+table {
+  td {
+    padding: 0;
+  }
+}
+
+.tdtabel {
+  margin: auto;
+  width: 60%;
+  padding: 0;
+}
+
+.trtabel {
+  margin: auto;
+  width: 30%;
+  padding: 0;
+}
+
+.modal-dialog-centered {
+  justify-content: center;
+}
+
+@media (max-width: 991px) {
+  .text-cancel {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 577px) {
+  .btn-outline {
+    padding: 7px 15px !important;
+  }
+}
+
+@media (max-width: 490px) {
+  .text-cancel {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 440px) {
+  .text-cancel {
+    font-size: 14px;
+  }
+
+  .label-cancel {
+    font-size: 12px;
+  }
+
+  .btn-solid {
+    padding: 5px 10px !important;
+  }
+
+  .btn-outline {
+    padding: 5px 10px !important;
+  }
+}

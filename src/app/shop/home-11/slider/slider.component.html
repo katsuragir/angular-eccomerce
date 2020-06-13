@@ -1,0 +1,47 @@
+<!-- Home slider -->
+<section class="p-0">
+    <ngx-slick-carousel class="slide-1 home-slider slider-home" #slickModal="slick-carousel" [config]="sliderConfig">
+        <div ngxSlickItem *ngFor="let banner of banners" class="home-banner">
+            <div >
+              <a href="{{banner.hyperlink}}">
+                <img class="home text-center respons-img" style="object-fit: cover;width: 100%;height: auto;" src="{{imgUrl}}/images/banners/{{banner.image}}">
+              </a>
+              <!--
+                <div class="container-home">
+                    <div class="row">
+                        <div class="col">
+                            <div class="slider-contain">
+                               - <div>
+                                    <h4>welcome to vapehan</h4>
+                                   <h1>women fashion</h1>
+                                    <a [routerLink]="'/home/left-sidebar/collection/women'" class="btn btn-solid">shop now</a>
+                                </div>-
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              -->
+            </div>
+        </div>
+        <!--
+        <div ngxSlickItem>
+            <div class="home text-center" style="background-image: url('/assets/images/home-banner/2.jpg')">
+                <div class="container-home">
+                    <div class="row">
+                        <div class="col">
+                            <div class="slider-contain">
+                                --<div>
+                                  <h4>welcome to vapehan</h4>
+                                  <h1>women fashion</h1>
+                                    <a [routerLink]="'/home/left-sidebar/collection/women'" class="btn btn-solid">shop now</a>
+                                </div>-
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      -->
+    </ngx-slick-carousel>
+</section>
+<!-- Home slider end -->

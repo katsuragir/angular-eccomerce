@@ -1,0 +1,400 @@
+<!-- breadcrumb start -->
+<div class="breadcrumb-section" style="padding: 15px 0;">
+  <div class="container-home">
+      <div class="row">
+          <div class="col-sm-6">
+              <div class="page-title">
+                <h2 style="text-transform: none;">Checkout</h2>
+
+              </div>
+          </div>
+          <div class="col-sm-6">
+            <!--
+              <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                  <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a [routerLink]="'/home/vapehan'">Home</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                  </ol>
+              </nav>
+              -->
+          </div>
+      </div>
+  </div>
+</div>
+<!-- breadcrumb End -->
+<section class="section-b-space" style="padding-top: 10px;" *ngIf="customer">
+  <div class="container-home padding-cls">
+      <div class="checkout-page">
+          <div class="checkout-form" *ngIf="setting$ | async as setting">
+              <form>
+                  <div class="row">
+                      <div class="col-lg-6 col-sm-12 col-xs-12">
+                          <div class="checkout-title" style="padding: 1px 0 0; width: 100%; margin-bottom: 5px;">
+                              <h3>Shipping Destination</h3>
+                          </div>
+                          <hr style="margin-bottom: 0; margin-top: 0;" />
+                          <div class="row check-out" style="margin-bottom: 10px;">
+                            <table style="margin: 0 15px; line-height: 30px; width: 100%;">
+                              <td>
+                                <tr>Name    </tr>
+                                <tr>Phone   </tr>
+                                <tr>Email   </tr>
+                                <tr>Address </tr>
+                              </td>
+                              <td>
+                                  <tr>:</tr>
+                                  <tr>:</tr>
+                                  <tr>:</tr>
+                                  <tr>:</tr>
+                                </td>
+                              <td>
+                                <tr>{{customer.nameReceive}}</tr>
+                                <tr>{{customer.phone}}</tr>
+                                <tr>{{customer.email}}</tr>
+                                <tr>{{customer.address}}, {{customer.city}} {{customer.type}}, {{customer.subdistrict_name}}, {{customer.province}}, {{customer.postal}}</tr>
+                              </td>
+                            </table>
+                            <!--
+                              <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <span class="nickname">Name:</span>&nbsp;<span>{{customer.firstname}} {{customer.lastname}}</span>
+                              </div>
+                              <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <span class="nickname">Phone:</span>&nbsp;<span>{{customer.phone}}</span>
+                              </div>
+                              <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <span class="nickname">Email:</span>&nbsp;<span>{{customer.email}}</span>
+                              </div>
+                              <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <span class="nickname">Address:</span>&nbsp;<span class="address">{{customer.address}}</span>
+                              </div>
+                              <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <span class="nickname">District:</span>&nbsp;<span class="address">{{dist.subdistrict_name}}</span>
+                              </div>
+                              <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <span class="nickname">City:</span>&nbsp;<span class="address">{{dist.city}}</span>
+                              </div>
+                              <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <span class="nickname">Province:</span>&nbsp;<span class="address">{{dist.province}}, {{customer.postal}}</span>
+                              </div>
+                              -->
+                          </div>
+                          <div class="row check-out" style="margin-bottom: 15px;">
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                              <a class="btn btn-solid" style="cursor: pointer; background-image: linear-gradient(30deg, #2979FF 50%, transparent 50%);border-radius: 5px; border: 2px solid #2979FF; text-transform: none; box-shadow: unset;" [attr.data-target]="'#editAddress'+customer.id_customer" data-toggle="modal" title="Edit Address">Edit Address</a>
+                            </div>
+                          </div>
+                          <hr />
+
+
+                          <div class="row garis"></div>
+
+                          <div class="order-box" *ngIf='checkOutItems.length'>
+                            <!--<div class="table-wrapper-scroll-y my-custom-scrollbar" id="style-1">-->
+                              <table *ngFor="let item of checkOutItems">
+                                <th>
+                                  <div class="div-cls">
+                                    <img class="img-chk" src="{{imgUrl}}/images/product/{{item.image}}">
+                                  </div>
+                                </th>
+                                <th>
+                                  <tr>
+                                    <th style="font-weight: 500">
+                                      <div class="div-prd">
+                                        {{ item.prodName }}<span *ngIf="item.color" class="spn-item"> ( {{item.color}} )</span><span *ngIf="item.nic" class="spn-item"> ( {{item.nic}} )</span> <br />
+                                        <span *ngIf="item.stock > 0 && item.stock <= 10" style="font-size: 10px; color: red;">Stock Left {{ item.stock }}</span>
+                                        <span *ngIf="item.stock > 10 && item.stock <= 20" style="font-size: 10px; color: orange;">Stock Left {{ item.stock }}</span>
+                                        <span *ngIf="item.stock === 0" style="font-size: 10px; color: darkred;">Out of Stock</span>
+                                      </div>
+                                    </th>
+                                  </tr>
+                                  <tr style="transform: translate(0, -10px);">
+                                    <th>
+                                      <tr class="tr-item" style="margin: 0 10px; color: darkgray;">
+                                        <th class="cht-qty">Qty: {{ item.qty }}</th>
+                                        <th class="cht-price">Prc: Rp. {{ item.price }}</th>
+                                        <th class="cht-sub">Sub: Rp. {{ item.harga }}</th>
+                                      </tr>
+                                    </th>
+                                  </tr>
+                              </th>
+                              </table>
+                              <table style="border-top: 1px solid darkgray; width: 100%;" *ngIf='checkOutItems'>
+                                <th>
+                                  <div class="div-cls">
+
+                                  </div>
+                                </th>
+                                <th>
+                                  <tr>
+                                    <th>
+                                      <div style="text-align: left; transform: translate(0, -10px);">
+
+                                      </div>
+                                    </th>
+                                  </tr>
+                                  <tr>
+                                      <th>
+                                        <tr style="margin: 0 10px;">
+                                          <th style="font-weight: 100;"></th>
+                                          <th style="font-weight: 400;width: 200px;text-align: right; color: black;">Total Qty</th>
+                                          <th style="font-weight: 400;width: 163px;text-align: right; color: red;">{{ checkOutItems[0].totalqty }}</th>
+                                        </tr>
+                                      </th>
+                                    </tr>
+                                  <tr>
+                                    <th>
+                                      <tr style="margin: 0 10px;">
+                                        <th style="font-weight: 100;"></th>
+                                        <th style="font-weight: 400;width: 200px;text-align: right; color: black;">Sub Total</th>
+                                        <th style="font-weight: 400;width: 163px;text-align: right; color: red;">Rp. {{ checkOutItems[0].total }}</th>
+                                      </tr>
+                                    </th>
+                                  </tr>
+                                </th>
+                              </table>
+                          <!--</div>-->
+                        </div>
+                        <div class="order-box" *ngIf='!checkOutItems.length'>
+                          <ul class="qty" *ngIf='!checkOutItems.length'>
+                            <li class="empty-checkout"> There are no products in cart </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-6 col-sm-12 col-xs-12" [formGroup]="checkoutForm" *ngIf="setting.payment === 1">
+                          <div class="checkout-details" style="padding: 25px;">
+                              <div style="position: relative; margin-bottom: 15px; background-color: #F5F1EE;" *ngIf="voucher">
+                                <div style="padding: 10px 20px;box-shadow: 1px 3px 8px 1px rgba(0,0,0,.12); border-radius: 7px;">
+                                  <div class="row">
+                                    <div class="col-sm-11 mobile-vouch">
+                                        <h3 style="font-size: 14px; font-weight: 500; color: #424242;">{{voucher.voucherid}}</h3>
+                                        <h4 style="font-size: 12px; font-weight: 300;">{{voucher.vouchername}}</h4>
+                                    </div>
+                                    <div class="col-sm-1 mobile-close">
+                                      <a style="cursor: pointer;" (click)="closeVoucher()"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- Donasi COVID-19 
+                              <div style="position: relative; margin-bottom: 15px; background-color: #e22e2d;" *ngIf="amount >= 100000">
+                                <div style="padding: 10px 20px;box-shadow: 1px 3px 8px 1px rgba(0,0,0,.12); border-radius: 7px;">
+                                  <div class="row">
+                                    <div class="col-sm-11 mobile-vouch">
+                                        <h3 style="font-size: 14px; font-weight: 500; color: white; text-transform: none;">Terima kasih, kamu sudah berdonasi THR sebesar</h3>
+                                        <h4 style="font-size: 18px; font-weight: bold; color: white; text-transform: none;">Rp {{ donasi  | number:'1.0-0'}}</h4>
+                                        <h4 style="font-size: 11px; font-weight: 300; color: white; text-transform: none;">Untuk membantu keluarga yang tidak mampu dalam melawan COVID-19 di saat ramadan.</h4>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              -->
+                              
+                              <div class="order-box" style="margin-bottom: 0;">
+
+
+                                  <ul class="qty" *ngIf='!checkOutItems.length'>
+                                   <li class="empty-checkout"> There are no products in cart </li>
+                                  </ul>
+                                  <ul class="sub-total">
+
+                                      <li *ngIf='checkOutItems.length'>
+
+                                       <div class="shipping" style="width: 100%; float: left;">
+                                          <div class="shopping-option" style="margin-bottom: 10px;">
+                                              <label style="margin-bottom: 0;" for="free-shipping">Courier</label>
+                                              <select class="form-control" formControlName="courier" #mySelect (change)='onOptionService(mySelect.value,customer.id_city, customer.type,totweight)' required>
+                                                <option style="padding: 10px;" selected *ngIf="!service">Select Courier</option>
+                                                <option style="padding: 10px;" value="" *ngIf="service" selected>Select Courier</option>
+                                                <option style="padding: 10px;" value="{{courier.slug}}" *ngFor="let courier of couriers | orderBy:sortByOrder">{{courier.name}}</option>
+                                              </select>
+                                          </div>
+                                          <div class="shopping-option" *ngIf="service">
+                                            <label style="margin-bottom: 0;" for="free-shipping">Services</label>
+                                            <select class="form-control" formControlName="service" name="service" #myService (ngModelChange)="onOptionTotal(kurir[0],$event)" required>
+                                              <option value="" selected>Select Service Courier</option>
+                                              <option [ngValue]="ongkir" *ngFor="let ongkir of ongkirs[0].costs">
+                                                {{ongkir.service}}&nbsp;({{ongkir.cost[0].etd}} days),&nbsp;Rp. {{ongkir.cost[0].value | currency:' ':'symbol':'1.0-3'}}
+                                              </option>
+                                            </select>
+                                          </div>
+                                       </div>
+                                      </li>
+                                  </ul>
+                                  <ul class="total" style="margin-bottom: 5px;">
+
+                                      <li *ngIf="totweight < 1000" class="li-count">Weight <span class="count" style="width: 60%; text-align: right; color:black; font-weight: 400;">{{ totweight }} gr</span></li>
+                                      <li *ngIf="totweight >= 1000" class="li-count">Weight <span class="count" style="width: 60%; text-align: right; color:black; font-weight: 400;">{{ totweight / 1000 }} kg</span></li>
+
+                                      <!--Discount Payment-->
+
+                                      <li *ngIf="voucher && voucher.vouchertab === 'Percent' && onOption1 && potongan_ongkir" class="li-count">Discount Ongkir <span *ngIf="potongan_ongkir && total_ongkir" class="count potongan"> {{ (total_ongkir > 0) ? (potongan_ongkir | number:'1.0-0') : 'Free Ongkir'}}</span></li>
+
+                                      <li *ngIf="voucher && voucher.vouchertab === 'Amount' && potongan_ongkir" class="li-count">Discount Ongkir <span class="count potongan"> {{ (total_ongkir > 0) ? (potongan_ongkir | number:'1.0-0') : 'Free Ongkir' }}</span></li>
+
+                                      <!--Discount Ongkir-->
+
+                                      <li *ngIf="voucher && voucher.vouchertab === 'Percent' && onOption1 && potongan" class="li-count">Discount  <span *ngIf="potongan" class="count potongan"> {{potongan | number:'1.0-0'}}</span></li>
+
+                                      <li *ngIf="voucher && voucher.vouchertab === 'Amount' && potongan" class="li-count">Discount <span class="count potongan"> {{ potongan | number:'1.0-0' }}</span></li>
+
+                                      <!--Without voucher-->
+
+                                      <li *ngIf="onOption1 && !voucher" class="li-count">Total Payment<span class="count" style="width: 60%; text-align: right; color:black; font-weight: 400;">Rp. {{ (amount*1 +pay*1)+ongkir*1  | currency:' ':'symbol':'1.0-3'}}</span></li>
+
+                                      <li *ngIf="onOption2 && !voucher" class="li-count">Total Payment<span class="count" style="width: 60%; text-align: right; color:black; font-weight: 400;" >Rp. {{ (amount*1 +pay*1) | currency:' ':'symbol':'1.0-3'}}</span></li>
+
+                                      <!--With voucher-->
+
+                                      <li *ngIf="onOption1 && voucher" class="li-count">Total Payment<span class="count" style="width: 60%; text-align: right; color:black; font-weight: 400;">Rp. {{ amountVoucher +pay*1  | number:'1.0-0'}}</span></li>
+
+                                      <li *ngIf="onOption2 && voucher" class="li-count">Total Payment<span class="count" style="width: 60%; text-align: right; color:black; font-weight: 400;" >Rp. {{ (amount*1 +pay*1) | number:'1.0-0'}}</span></li>
+                                      <!---->
+
+
+                                  </ul>
+                              </div>
+
+                              <div class="payment-box" style="margin-top: 30px;" *ngIf='checkOutItems.length'>
+                                  <div class="upper-box" style="margin-bottom: 15px; padding-top: 15px;">
+                                    <span class="weight" style="color: red; margin-top: 20px;">* Mohon untuk membayar atau mentransfer Tepat Sampai 2 digit terakhir.</span>
+                                    <br />
+                                    <span class="weight" style="color: red;">* Please Pay or Transfer Until The Last Two Digits.</span>
+                                    <br />
+                                    <span class="weight" style="color: red;">* Setelah melakukan generate kode pembayaran harap menyimpan kode pembayaran yang tertera dan mengklik tombol "Back to Merchant" untuk kembali ke halaman order list.</span>
+
+                                  </div>
+                                  <div class="text-right" style="margin-bottom: 10px;">
+                                      <button class="btn-solid btn mobile-check" [disabled]="!checkoutForm.valid" (click)="placeOrder()" type="submit" style="text-transform: none;border-radius: 5px; width: 100%;">
+                                        BCA Transfer
+                                      </button>
+                                  </div>
+                                  <div class="text-right" style="margin-bottom: 10px;">
+                                      <button class="btn-solid btn mobile-check" [disabled]="!checkoutForm.valid" (click)="stripeCheckout()" type="submit" style="text-transform: none;border-radius: 5px; width: 100%;">
+                                        Other Payment Gateway
+                                      </button>
+                                  </div>
+                                  <div class="text-right" *ngIf="!voucher">
+                                      <button class="btn-voucher btn mobile-check" [attr.data-target]="'#voucher'+customer.id_customer" data-toggle="modal" title="Add Voucher" type="submit" style="text-transform: none;border-radius: 5px; width: 100%;">
+                                         Voucher Promo Vapehan
+                                      </button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!--
+                      <div class="col-lg-6 col-sm-12 col-xs-12" [formGroup]="checkoutFormManual" *ngIf="setting.payment === 0">
+                          <div class="checkout-details" style="padding: 25px;">
+                              <div style="position: relative; margin-bottom: 15px; background-color: #F5F1EE;" *ngIf="voucher">
+                                <div style="padding: 10px 20px;box-shadow: 1px 3px 8px 1px rgba(0,0,0,.12); border-radius: 7px;">
+                                  <div class="row">
+                                    <div class="col-sm-11 mobile-vouch">
+                                        <h3 style="font-size: 14px; font-weight: 500; color: #424242;">{{voucher.voucherid}}</h3>
+                                        <h4 style="font-size: 12px; font-weight: 300;">{{voucher.vouchername}}</h4>
+                                    </div>
+                                    <div class="col-sm-1 mobile-close">
+                                      <a style="cursor: pointer;" (click)="closeVoucher()"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="order-box" style="margin-bottom: 0;">
+
+
+                                  <ul class="qty" *ngIf='!checkOutItems.length'>
+                                   <li class="empty-checkout"> There are no products in cart </li>
+                                  </ul>
+                                  <ul class="sub-total">
+
+                                      <li *ngIf='checkOutItems.length'>
+
+                                       <div class="shipping" style="width: 100%; float: left;">
+                                          <div class="shopping-option" style="margin-bottom: 10px;">
+                                              <label style="margin-bottom: 0;" for="free-shipping">Courier</label>
+                                              <select class="form-control" formControlName="courier" #mySelect (change)='onOptionService(mySelect.value,customer.id_city,totweight)' required>
+                                                <option>Select Courier</option>
+                                                <option value="{{courier.slug}}" *ngFor="let courier of couriers | orderBy:sortByOrder">{{courier.name}}</option>
+                                              </select>
+                                          </div>
+                                          <div class="shopping-option" *ngIf="service">
+                                            <label style="margin-bottom: 0;" for="free-shipping">Services</label>
+                                            <select class="form-control" formControlName="service" name="service" #myService (ngModelChange)="onOptionTotal(kurir,$event)" required>
+                                              <option value="" selected>Select Service Courier</option>
+                                              <option [ngValue]="ongkir" *ngFor="let ongkir of ongkirs">
+                                                {{ongkir.service}}&nbsp;({{ongkir.cost[0].etd}} days),&nbsp;Rp. {{ongkir.cost[0].value | currency:' ':'symbol':'1.0-3'}}
+                                              </option>
+                                            </select>
+                                          </div>
+                                       </div>
+                                      </li>
+                                  </ul>
+                                  <ul class="total" style="margin-bottom: 5px;">
+                                      <li *ngIf="totweight < 1000" class="li-count">Weight <span class="count" style="width: 60%; text-align: right; color:black; font-weight: 400;">{{ totweight }} G</span></li>
+                                      <li *ngIf="totweight >= 1000" class="li-count">Weight <span class="count" style="width: 60%; text-align: right; color:black; font-weight: 400;">{{ totweight / 1000 }} Kg</span></li>
+
+                                      <li *ngIf="voucher && voucher.vouchertab === 'Percent'" class="li-count">{{voucher.voucherid}} <span *ngIf="potongan" class="count potongan"> {{potongan | number:'1.0-0'}} off</span></li>
+
+                                      <li *ngIf="voucher && voucher.vouchertab === 'Amount'" class="li-count">{{voucher.voucherid}} <span class="count potongan"> {{voucher.value }} off</span></li>
+
+                                      -Without voucher-
+
+                                      <li *ngIf="onOption1 && !voucher" class="li-count">Total <span class="count" style="width: 60%; text-align: right; color:black; font-weight: 400;">Rp. {{ (amount*1 +pay*1)+ongkir*1  | currency:' ':'symbol':'1.0-3'}}</span></li>
+
+                                      <li *ngIf="onOption2 && !voucher" class="li-count">Total <span class="count" style="width: 60%; text-align: right; color:black; font-weight: 400;" >Rp. {{ (amount*1 +pay*1) | currency:' ':'symbol':'1.0-3'}}</span></li>
+
+                                      --With voucher--
+
+                                      <li *ngIf="onOption1 && voucher" class="li-count">Total <span class="count" style="width: 60%; text-align: right; color:black; font-weight: 400;">Rp. {{ amountVoucher  | number:'1.0-0'}}</span></li>
+
+                                      <li *ngIf="onOption2 && voucher" class="li-count">Total <span class="count" style="width: 60%; text-align: right; color:black; font-weight: 400;" >Rp. {{ (amount*1 +pay*1) | number:'1.0-0'}}</span></li>
+                                      ----
+
+                                      <br />
+                                      <span class="weight">Mohon Transfer Tepat Sampai 2 digit terakhir.</span>
+                                      <br />
+                                      <span class="weight">Please Pay Until The Last Two Digits.</span>
+                                  </ul>
+                              </div>
+
+                              <div class="payment-box" *ngIf='checkOutItems.length'>
+                                  <div class="upper-box">
+
+                                      <div class="payment-options">
+                                          <ul>
+                                              <li style="margin-bottom: 0; transform: translate(0,20px);">
+                                                  <div class="title-box">
+                                                      <div style="color:black; font-size: 16px;">Payment</div>
+                                                  </div>
+                                              </li>
+                                              <li style="margin-bottom: 0;">
+                                                  <div class="radio-option">
+                                                      <input type="radio" formControlName="payment" value="01"  name="payment" id="payment-2" style="top: 44px;">
+                                                      <img src="https://www.bca.co.id/~/media/Images/logo-bca.ashx" height="100" width="100" style="margin-left: 10px;" alt="BCA">
+                                                  </div>
+                                              </li>
+                                          </ul>
+                                      </div>
+                                  </div>
+                                  <div class="text-right" style="margin-bottom: 10px;">
+                                      <button class="btn-solid btn mobile-check" [disabled]="!checkoutFormManual.valid" (click)="placeOrder()" type="submit" style="text-transform: none;border-radius: 5px; width: 100%;">
+                                         Place Order
+                                      </button>
+                                  </div>
+                                  <div class="text-right" *ngIf="!voucher">
+                                      <button class="btn-voucher btn mobile-check" [disabled]="!onOption1 && !onOption2" [attr.data-target]="'#voucher'+customer.id_customer" data-toggle="modal" title="Add Voucher" type="submit" style="text-transform: none;border-radius: 5px; width: 100%;">
+                                         Voucher Promo Vapehan
+                                      </button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    -->
+                  </div>
+
+              </form>
+          </div>
+      </div>
+  </div>
+  <app-edit-address [customer]="customer"></app-edit-address>
+  <app-voucher *ngIf='checkOutItems.length' [customer]="customer" [total]="checkOutItems[0].totalOut" (voucher)="getVoucher($event)"></app-voucher>
+</section>

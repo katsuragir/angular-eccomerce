@@ -1,0 +1,155 @@
+<!-- breadcrumb start -->
+<div class="breadcrumb-section" style="padding: 15px 0;" *ngIf="!orderDetails">
+    <div class="container-home">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="page-title">
+                    <h2 style="text-transform: none;">404 Page</h2>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="theme-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="'/home/vapehan'">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">404 page</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb End -->
+<!-- section start -->
+<section class="p-0" *ngIf="!orderDetails">
+    <div class="container-home">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="error-section">
+                    <h1>404</h1>
+                    <h2>page not found</h2>
+                    <a [routerLink]="'/home/vapehan'" class="btn btn-solid">back to home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section ends -->
+
+<!-- thank-you section start -->
+<section class="section-b-space light-layout" style="padding-top: 10px;" *ngIf="orderDetails">
+    <div class="container-home">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="success-text">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    <h2>thank you</h2>
+                    <p>Pemesanan Anda Sudah Kami Catat dan Sudah Kami Kirim Ke Email Anda.</p>
+                    <p>Mohon Lakukan Pembayaran Melalui ATM atau mobile Banking ke Nomor BCA <span style="color: red;">2302112658 |
+                      Lee Handoko</span>.</p>
+                    <p>We Already Send Your Detail Order to Your Email, Please Complete Your Payment Immediately Before the Payment Limit.</p>
+                    <p>Your Transaction ID: <span style="color: red;">{{orderDetails.OI}}</span></p>
+                    <p>Virtual Account BCA: <span style="color: red;">2302112658 |
+                      Lee Handoko</span></p>
+                    <p *ngIf="orderDetails.VR && potongan">Potongan: <span style="color: red;">Rp. {{ potongan | currency:' ':'symbol':'1.0-3'}}</span></p>
+                    <p *ngIf="orderDetails.VR && potongan_ongkir">Potongan Ongkir: <span style="color: red;">Rp. {{ potongan_ongkir | currency:' ':'symbol':'1.0-3'}}</span></p>
+                    <p *ngIf="!orderDetails.VR">Total Amount:
+                      <span style="color: red;" *ngIf="!orderDetails.VR && orderDetails.PT.courier === 4">Rp. {{ (amount*1 +pay*1) | currency:' ':'symbol':'1.0-3'}}</span>
+                      <span style="color: red;" *ngIf="!orderDetails.VR && orderDetails.PT.courier !== 4">Rp. {{ amount | currency:' ':'symbol':'1.0-3'}}</span>
+                    </p>
+                    <p *ngIf="orderDetails.VR">Total Amount:
+                      <span style="color: red;" *ngIf="orderDetails.VR && orderDetails.PT.courier === 4">Rp. {{ amount | currency:' ':'symbol':'1.0-3'}}</span>
+                      <span style="color: red;" *ngIf="orderDetails.VR && orderDetails.PT.courier !== 4">Rp. {{ amount | currency:' ':'symbol':'1.0-3'}}</span>
+                    </p>
+                    <p style="font-size: 12px; font-weight: bold; color: black;">Note: Harap Catat Nomor Transaksi Anda | Please Note Your Transaction ID</p>
+                    <div class="col-md-12">
+                        <div class="delivery-sec">
+                            <h3>expected date of payment</h3>
+                            <h2>1 X 24Jam</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section ends -->
+<!-- order-detail section start
+<section class="section-b-space" *ngIf="orderDetails">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="product-order">
+                    <h3>your order details</h3>
+                    <div class="row product-order-detail" *ngFor="let item of orderDetails.product">
+                        <div class="col-3">
+                            <img [src]="item.product.pictures[0]" alt="" class="img-fluid">
+                        </div>
+                        <div class="col-3 order_detail">
+                            <div>
+                                <h4>product name</h4>
+                                <h5>{{item.product.name}}</h5>
+                            </div>
+                        </div>
+                        <div class="col-3 order_detail">
+                            <div>
+                                <h4>quantity</h4>
+                                <h5>{{item.quantity}}</h5>
+                            </div>
+                        </div>
+                        <div class="col-3 order_detail">
+                            <div>
+                                <h4>price</h4>
+                                <h5>{{item.product.price | currency:productsService?.currency:'symbol'}}</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="total-sec">
+                        <ul>
+                            <li>Subtotal <span>{{orderDetails.totalAmount | currency:productsService?.currency:'symbol'}}</span></li>
+                            <li>Shipping <span>$00.00</span></li>
+                            <li>Tax <span>$00.00</span></li>
+                        </ul>
+                    </div>
+                    <div class="final-total">
+                        <h3>total <span>{{orderDetails.totalAmount | currency:productsService?.currency:'symbol'}}</span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row order-success-sec">
+                    <div class="col-sm-6">
+                        <h4>summery</h4>
+                        <ul class="order-detail">
+                            <li>order ID: {{orderDetails.orderId}}</li>
+                            <li>Order Date: October 22, 2018</li>
+                            <li>Order Total: {{orderDetails.totalAmount | currency:productsService?.currency:'symbol'}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4>shipping address</h4>
+                        <ul class="order-detail">
+                            <li>{{orderDetails.shippingDetails.address}}</li>
+                            <li>{{orderDetails.shippingDetails.state}}</li>
+                            <li>{{orderDetails.shippingDetails.country}}, {{orderDetails.shippingDetails.postalcode}}</li>
+                            <li>Contact No. {{orderDetails.shippingDetails.phone}}</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-12 payment-mode">
+                        <h4>payment method</h4>
+                        <p>Pay on Delivery (Cash/Card). Cash on delivery (COD) available. Card/Net banking acceptance subject to device availability.</p>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="delivery-sec">
+                            <h3>expected date of delivery</h3>
+                            <h2>March 21, 2019</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section> -->
+<!-- Section ends -->

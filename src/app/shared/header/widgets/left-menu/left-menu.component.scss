@@ -1,0 +1,17 @@
+.high-menu {
+  display: block;
+}
+
+.low-menu{
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .high-menu {
+    display: none;
+  }
+
+  .low-menu{
+    display: block;
+  }
+}

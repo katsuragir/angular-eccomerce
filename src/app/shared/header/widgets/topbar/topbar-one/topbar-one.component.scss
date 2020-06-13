@@ -1,0 +1,38 @@
+.btn-profile {
+  color:rgb(255, 255, 255);
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 0.857143rem;
+  height: 40px;
+  line-height: 24px;
+  width: 90%;
+  border-radius: 8px;
+  font-weight: 800;
+  outline: currentcolor none medium;
+  padding: 0px 16px;
+  transition: background 0.8s ease 0s;
+  cursor: pointer;
+  display: block;
+  background:rgb(3, 172, 14) radial-gradient(circle at center center, transparent 1%,
+      rgb(3, 172, 14) 1%) repeat scroll center center / 15000%;
+  background-color: rgb(3, 172, 14);
+  border: medium none;
+  text-indent: initial;
+  position: relative;
+
+  &:hover {
+    background-color: rgb(3, 151, 12);
+  }
+
+}
+
+.span-profile {
+  display: block;
+  font-size: inherit;
+  opacity: 1;
+  overflow: hidden;
+  position: relative;
+  text-overflow: ellipsis;
+  top: 0px;
+  transition: opacity 0.3s linear 0s, top 0.3s linear 0s;
+  white-space: nowrap;
+}

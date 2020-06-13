@@ -1,0 +1,13 @@
+ .test {
+    text-decoration-line: underline;
+    color: #ef1515;
+    margin-top: -8px;
+  }
+
+@media print {
+  .test {
+    text-decoration-line: underline;
+    color: #ef1515;
+    margin-top: -8px;
+  }
+}

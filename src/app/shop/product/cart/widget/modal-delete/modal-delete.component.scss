@@ -1,0 +1,24 @@
+table {
+  td {
+    padding: 0;
+  }
+}
+
+.tdtabel {
+  margin: auto;
+  width: 60%;
+  padding: 0;
+}
+
+.trtabel {
+  margin: auto;
+  width: 30%;
+  padding: 0;
+}
+
+@media(max-width: 577px) {
+  .mobile-cancel {
+    padding: 7px 15px !important;
+  }
+}
+

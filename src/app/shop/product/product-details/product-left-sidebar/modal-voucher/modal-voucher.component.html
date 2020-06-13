@@ -1,0 +1,74 @@
+<!-- Quick-view modal popup start-->
+<div class="modal fade bd-example-modal-lg theme-modal quickviewm" [id]="'ModalVoucher'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content quick-view-modal" style="width: 70%;">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+          <div class="row">
+            <div class="col-lg-12 col-xs-12">
+              <div class="box-title" style="margin-bottom: 15px;">
+                <h3 class="text-cancel" style="text-align-last: center; font-weight: bold;">Voucher <span>{{type | titlecase}}</span></h3>
+              </div>
+
+              <section class="faq-section section-b-space" style="padding: unset;">
+                <div class="container-home" style="margin: unset !important;">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="accordion theme-accordion" id="accordionExample">
+                                <div class="card" *ngFor="let voucher of fillterVoucherOfType(vouchers, type)">
+                                    <div class="card-header" [id]="'heading'+voucher.id">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" [attr.data-target]="'#collapse'+voucher.id" aria-expanded="false" [attr.aria-controls]="'collapse'+voucher.id">
+                                                {{voucher.vouchername}}
+                                            </button>
+                                        </h5>
+                                    </div>
+            
+                                    <div *ngIf="type === 'ongkir'" [id]="'collapse'+voucher.id" class="collapse" [attr.aria-labelledby]="'heading'+voucher.id" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <h4 style="font-weight: 700;">Gratis Ongkir <span *ngIf="voucher.vouchertab === 'Amount'">{{voucher.vouchervalue / 1000 | currency:' ':'symbol':'1.0-3'}}Rb</span><span *ngIf="voucher.vouchertab === 'Percent'">{{voucher.vouchervalue}} %</span></h4>
+                                            <h6>Syarat dan Ketentuan</h6>
+                                            <ol type="1">
+                                              <li style="display: list-item; font-weight: 700;">Gunakan kode voucher : {{voucher.voucherid}}.</li>
+                                              <li style="display: list-item;">Voucher Gratis Ongkir dapat digunakan saat memasukan kode voucher pada halaman checkout.</li>
+                                              <li *ngIf="voucher.limit_pay > 0" style="display: list-item;">Voucher Gratis Ongkir hanya berlaku dengan Min. Pembelian <strong>Rp {{voucher.limit_pay | currency:' ':'symbol':'1.0-3'}}</strong> (tidak termasuk biaya tambahan lainnya).</li>
+                                              <li style="display: list-item;">Nominal Gratis Ongkir yang bisa di dapatkan sebesar <span *ngIf="voucher.vouchertab === 'Amount'">Rp {{voucher.vouchervalue | currency:' ':'symbol':'1.0-3'}}</span><span *ngIf="voucher.vouchertab === 'Percent'">{{voucher.vouchervalue}}%</span>.</li>
+                                              <li style="display: list-item;">Voucher hanya berlaku di www.vapehan.com.</li>
+                                              <li style="display: list-item;">1 (satu) Pengguna hanya bisa menggunakan 1 Voucher.</li>
+                                              <li style="display: list-item;">Vapehan berhak melakukan tindakan yang di perlukan apabila di duga terjadi tidakan kecurangan yang di lakukan oleh pengguna dan/atau melanggar syarat dan ketentuan yang mengakibatkan kerugian pihak Vapehan.</li>
+                                              <li style="display: list-item;">Dengan menggunakan Voucher yang tersedia di Vapehan, Pengguna dianggap telah memahami dan menyetujui semua syarat dan ketentuan yang berlaku.</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="type === 'pembayaran'" [id]="'collapse'+voucher.id" class="collapse" [attr.aria-labelledby]="'heading'+voucher.id" data-parent="#accordionExample">
+                                      <div class="card-body">
+                                          <h4 style="font-weight: 700;">Gratis Pemotongan Pembelian Sebesar <span *ngIf="voucher.vouchertab === 'Amount'">{{voucher.vouchervalue / 1000 | currency:' ':'symbol':'1.0-3'}}Rb</span><span *ngIf="voucher.vouchertab === 'Percent'">{{voucher.vouchervalue}} %</span></h4>
+                                          <h6>Syarat dan Ketentuan</h6>
+                                          <ol type="1">
+                                            <li style="display: list-item; font-weight: 700;">Gunakan kode voucher : {{voucher.voucherid}}.</li>
+                                            <li style="display: list-item;">Voucher Gratis Pemotongan Pembelian dapat digunakan saat memasukan kode voucher pada halaman checkout.</li>
+                                            <li *ngIf="voucher.limit_pay > 0" style="display: list-item;">Voucher Gratis Pemotongan Pembelian hanya berlaku dengan Min. Pembelian <strong>Rp {{voucher.limit_pay | currency:' ':'symbol':'1.0-3'}}</strong> (tidak termasuk biaya tambahan lainnya).</li>
+                                            <li style="display: list-item;">Nominal Gratis Pemotongan Pembelian yang bisa di dapatkan sebesar <span *ngIf="voucher.vouchertab === 'Amount'">Rp {{voucher.vouchervalue | currency:' ':'symbol':'1.0-3'}}</span><span *ngIf="voucher.vouchertab === 'Percent'">{{voucher.vouchervalue}}%</span>.</li>
+                                            <li style="display: list-item;">Voucher hanya berlaku di www.vapehan.com.</li>
+                                            <li style="display: list-item;">1 (satu) Pengguna hanya bisa menggunakan 1 Voucher.</li>
+                                            <li style="display: list-item;">Vapehan berhak melakukan tindakan yang di perlukan apabila di duga terjadi tidakan kecurangan yang di lakukan oleh pengguna dan/atau melanggar syarat dan ketentuan yang mengakibatkan kerugian pihak Vapehan.</li>
+                                            <li style="display: list-item;">Dengan menggunakan Voucher yang tersedia di Vapehan, Pengguna dianggap telah memahami dan menyetujui semua syarat dan ketentuan yang berlaku.</li>
+                                          </ol>
+                                      </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Quick-view modal popup end-->

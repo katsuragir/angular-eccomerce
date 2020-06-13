@@ -1,0 +1,118 @@
+<!-- header start -->
+<header id="left-header" class="left-header" style="padding-top: 5px;" >
+    <div class="mobile-fix-option"></div>
+
+    <div class="top-header low-width">
+        <div class="container">
+            <app-topbar-two></app-topbar-two>
+        </div>
+        <div *ngIf="customer && !customer.address || customer && !customer.dob || customer && !customer.gender || customer && !customer.id_city || customer && !customer.id_province || customer && !customer.nameReceive || customer && !customer.id_district || customer && !customer.postal" style="margin-top: 15px;box-shadow: 0 -8px 10px rgba(86, 70, 70, 0.1);background-color:#eee; border-top: thin solid#afafaf;">
+          <app-topbar [customer]="customer"></app-topbar>
+        </div>
+    </div>
+
+    <div class="top-header height-width">
+        <app-topbar-three></app-topbar-three>
+        <div *ngIf="customer && !customer.address || customer && !customer.dob || customer && !customer.gender || customer && !customer.id_city || customer && !customer.id_province || customer && !customer.nameReceive || customer && !customer.id_district || customer && !customer.postal" style="margin-top: 15px;box-shadow: 0 -8px 10px rgba(86, 70, 70, 0.1);background-color:#eee; border-top: thin solid#afafaf;">
+          <app-topbar [customer]="customer"></app-topbar>
+        </div>
+    </div>
+    <div class="metro">
+        <div class="container" style="padding-bottom: 5px;">
+            <div class="row">
+                <div class="col">
+                    <div class="main-menu">
+                        <div class="menu-left">
+                            <div id="mySidenav" class="sidenav">
+                                <nav style="background-color: #424242">
+                                    <div (click)="closeNav()">
+                                        <div class="sidebar-back text-left" style="color: white; border-bottom: 1px solid white;">
+                                            <i class="fa fa-angle-left pr-2" aria-hidden="true"></i> Back <i style="float: right; font-size: 29px;" class="fa fa-times" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div class="brand-logo" style="padding-bottom: 0; padding-top: 0;">
+                                        <table *ngIf="company">
+                                            <td align="center">
+                                              <tr>
+                                                  <div class="leftside_social" style="padding: 0; border-top: 0;">
+                                                      <div>
+                                                          <div class="footer-social">
+                                                              <ul>
+                                                                  <li >
+                                                                      <a href="https://www.facebook.com/vapehan/" target="_blank" style="cursor: pointer;"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+                                                                  </li>
+                                                                  <li >
+                                                                      <a target="_blank" href="https://www.youtube.com/channel/UCmczby514u9CnJcFO0s0Cxg" style="cursor: pointer;"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+                                                                  </li>
+                                                                  <li >
+                                                                      <a href="https://www.instagram.com/vapehan.official/?hl=en" target="_blank" style="cursor: pointer;"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                                                  </li>
+                                                                  <li >
+                                                                      <a target="_blank" href="https://www.tokopedia.com/vapehan?source=universe&st=product" style="cursor: pointer;"><img src="{{imgUrl}}/images/tokped.png" alt="Tokopedia" style="width: 15px; height: 18px; transform: translate(0, -5px);"></a>
+                                                                  </li>
+                                                                  <li>
+                                                                      <a target="_blank" href="https://shopee.co.id/vapehan" style="cursor: pointer;"><img src="{{imgUrl}}/images/shopee.png" alt="Shopee" style="width: 18px; height: 18px; transform: translate(0, -3px);"></a>
+                                                                  </li>
+                                                                  <li>
+                                                                      <a target="_blank" href="https://www.bukalapak.com/u/vapehan" style="cursor: pointer;"><img src="{{imgUrl}}/images/bukalapak.png" alt="Bukalapak" style="width: 18px; height: 18px; transform: translate(0, -3px);"></a>
+                                                                  </li>
+                                                              </ul>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </tr>
+                                            </td>
+                                          </table>
+                                    </div>
+                                    <div class="brand-logo" style="padding-bottom: 10px; padding-top: 10px;">
+                                        <table *ngIf="company">
+                                            <td align="center">
+                                              <tr>
+                                                  <img [routerLink]="['/']" src="assets/images/icon/{{company.compimage}}" alt="" class="img-fluid" style="margin-bottom: 10px; cursor: pointer;">
+                                              </tr>
+                                              <tr>
+                                                  <div class="call_us">
+                                                      <h5 style="font-size: 14px; color: white; line-height: 10px;">{{company.compaddress}}</h5>
+                                                  </div>
+                                              </tr>
+                                              <tr>
+                                                  <div class="call_us">
+                                                      <h5 style="font-size: 14px; color: white; line-height: 10px;">{{company.compcity}}, {{company.compprov}}</h5>
+                                                  </div>
+                                              </tr>
+                                              <tr>
+                                                  <div class="call_us">
+                                                      <h5 style="font-size: 14px; color: white; line-height: 10px;">Indonesia, {{company.comppost}}</h5>
+                                                  </div>
+                                              </tr>
+                                              <tr>
+                                                  <div class="call_us">
+                                                      <h5 style="font-size: 14px; color: white; line-height: 10px;">{{company.comphp}}</h5>
+                                                  </div>
+                                              </tr>
+                                              <tr>
+                                                  <div class="call_us">
+                                                      <h5 style="font-size: 14px; color: white; line-height: 10px;">{{company.compemail}}</h5>
+                                                  </div>
+                                              </tr>
+
+                                            </td>
+                                          </table>
+                                    </div>
+                                    <div class="left-sidebar_center" style="background-color: #424242; padding: 15px 0 30px 30px;">
+
+                                        <app-left-menu></app-left-menu>
+
+                                    </div>
+
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header end -->
+<app-edit-profile></app-edit-profile>

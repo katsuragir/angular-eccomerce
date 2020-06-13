@@ -1,0 +1,26 @@
+.cart-flow {
+  overflow-y: auto;
+  display: inline-block;
+  max-height: 315px;
+  min-width: 270px;
+  left: unset;
+  right: 0;
+}
+
+.mobile-search {
+  display: none !important;
+}
+
+.mobile-confirm {
+  display: none !important;
+}
+
+@media (max-width: 577px) {
+  .mobile-search {
+    display: inline-block !important;
+  }
+
+  .mobile-confirm {
+    display: inline-block !important;
+  }
+}

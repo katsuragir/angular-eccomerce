@@ -1,0 +1,163 @@
+.box-voucher {
+  display: flex;
+  position: relative;
+  height: 70px;
+  filter: drop-shadow(rgba(0, 0, 0, 0.12) 0px 1px 3px);
+  box-sizing: border-box;
+  width: 190px;
+  flex: 0 0 216px;
+  margin: 8px;
+
+  div {
+    background-color: rgb(255, 255, 255);
+  }
+
+  .awal-voucher {
+    position: relative;
+  
+    &:before {
+      left: -2px;
+      content: "";
+      position: absolute;
+      height: 70px;
+      width: 3px;
+      // background: radial-gradient(circle, transparent 2px, rgb(255, 255, 255) 2px) -2px 2px / 5px 8px repeat-y;
+    }
+  }
+  
+  .tengah-voucher {
+    white-space: nowrap;
+    min-width: 108px;
+    cursor: pointer;
+    flex: 1 1 100px;
+    padding: 8px 0px 8px 8px;
+    text-align: left;
+    text-align: -webkit-left;
+    text-align-last: left;
+  
+    .name-voucher {
+      display: block;
+      position: relative;
+      font-weight: 400;
+      font-size: 0.857143rem;
+      line-height: 18px;
+      color: rgba(49, 53, 59, 0.96);
+      text-transform: capitalize;
+      text-decoration: initial;
+      margin: 0px;
+
+      &:hover {
+        color: #43caff;
+      }
+    }
+  
+    .value-voucher {
+      margin-top: 0px;
+      margin-bottom: 2px;
+      color: rgba(0, 0, 0, 0.7);
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.43;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  
+    .limit-voucher {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      font-size: 9px;
+      line-height: 1.5;
+      color: rgba(0, 0, 0, 0.38);
+    }
+  }
+  
+  .gambar-voucher-ongkir {
+    display: flex;
+    width: 125px;
+    background-image: url(https://api.vapehan.com/api/images/cek-ongkir.png);
+    background-repeat-y: no-repeat;
+    background-size: 110% 70px;
+    flex: 0 0 66px;
+  }
+
+  .gambar-voucher-pay {
+    display: flex;
+    width: 125px;
+    background-image: url(https://api.vapehan.com/api/images/pembayaran.png);
+    background-repeat-y: no-repeat;
+    background-size: 110% 70px;
+    flex: 0 0 66px;
+  }
+}
+
+.stock-para {
+  font-size: 10px;
+  color: black;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+
+.demo-one {
+  height: 100px;
+  background-color: #FFFFFF;
+  img {
+    height: 100px;
+    width: 100px;
+    margin: 0 10px;
+  }
+}
+
+.demo-two {
+  height: 500px;
+}
+
+.demo-border {
+  padding: 10px 10px 10px 10px;
+  box-sizing: border-box;
+  border: 1px solid;
+  border-color: #CFCFCF;
+  margin-bottom: 20px;
+}
+
+.img-flud {
+  width: 307px;
+  height: auto;
+}
+
+.note-display {
+  padding-left: 35px;
+  padding-right: 0;
+}
+
+
+@media (max-width: 576px) {
+  .note-display {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+
+@media (max-width: 1000px) {
+  .demo-one {
+    height: 100px;
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: justify;
+}
+
+@media all and (orientation:landscape) {
+    pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        text-align: justify;
+    }
+}
